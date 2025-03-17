@@ -1,0 +1,29 @@
+.discountbadge {
+  background: red;
+  width: 30px;
+  height: 30px;
+
+  text-align: center;
+}
+.discountbadge:before,
+.discountbadge:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 30px;
+  background: red;
+}
+.discountbadge:before {
+  -webkit-transform: rotate(30deg);
+  -moz-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  -o-transform: rotate(30deg);
+}
+.discountbadge:after {
+  -webkit-transform: rotate(60deg);
+  -moz-transform: rotate(60deg);
+  -ms-transform: rotate(60deg);
+  -o-transform: rotate(60deg);
+}

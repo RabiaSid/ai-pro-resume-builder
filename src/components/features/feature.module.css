@@ -1,0 +1,11 @@
+.animate3d {
+  animation: rotateAnimation 2.9s infinite alternate;
+}
+@keyframes rotateAnimation {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
