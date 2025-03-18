@@ -16,7 +16,7 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
   return (
     <>
       <div key={review.id} className="md:p-5 lg:p-10">
-        <div className="bg-white shadow-[0px_0px_20px_rgba(220,220,230,1)] border-2 rounded-md p-4 m-auto w-full flex flex-col justify-between gap-4 h-[250px] sm:h-[200px]">
+        <div className="bg-white shadow-[0px_0px_20px_rgba(220,220,230,1)] border-2 rounded-md p-4 m-auto w-full flex flex-col justify-between gap-4 h-[200px] md:h-[200px]">
           {/* Stars and Date */}
           <div className="flex justify-between items-center">
             <div className="flex text-sm">

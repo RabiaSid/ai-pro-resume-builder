@@ -14,16 +14,16 @@ import { ApplyNowBannerData } from "./data";
 const ApplyNow = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState<any>(false);
   const [isProcessing, setIsProcessing] = useState<any>(false);
-  const [message, setMessage] = useState<any>();
-  const [anyLink, setAnyLink] = useState<any>();
   const [captchaError, setCaptchaError] = useState<any>("");
   const [verified, setVerified] = useState<any>(false);
+
   const [experienceData, setExperienceData] = useState<any>([
     { id: "1", name: "1-2 years" },
     { id: "2", name: "3-5 years" },
     { id: "3", name: "6-10 years" },
     { id: "4", name: "10+ years" },
   ]);
+
   const [degreeData, setDegreeData] = useState<any>([
     { id: "1", name: "High School Diploma" },
     { id: "2", name: "Associate Degree" },
@@ -31,6 +31,7 @@ const ApplyNow = () => {
     { id: "4", name: "Master's Degree" },
     { id: "5", name: "Ph.D." },
   ]);
+  console.log(verified,);
 
   const {
     control,
@@ -158,7 +159,7 @@ const ApplyNow = () => {
                   validate: (fileList) =>
                     fileList && fileList.length > 0
                       ? fileList[0].size <= 5 * 1024 * 1024 ||
-                        "File size should be 5MB or less"
+                      "File size should be 5MB or less"
                       : "Resume file is required",
                 }}
                 render={({ field: { onChange, value } }) => (

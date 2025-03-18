@@ -33,6 +33,7 @@ const Ads = () => {
   //       })
   //       .catch((err) => console.log(err));
   //   }, []);
+  console.log(ads);
 
   return (
     <>

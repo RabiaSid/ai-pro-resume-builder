@@ -7,8 +7,10 @@ import ReCAPTCHA from "react-google-recaptcha";
 const ContactForm = () => {
   const [captchaError, setCaptchaError] = useState<any>();
   const [verified, setVerified] = useState<any>(false);
+  console.log(verified);
 
   const handleCheckCaptcha = (val: string | null) => {
+    console.log(val);
     setVerified(true);
     setCaptchaError("");
   };

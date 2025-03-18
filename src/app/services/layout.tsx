@@ -1,21 +1,34 @@
 // Meta Data
 export const metadata = {
     // Title & Descriptions
-    title: "Journey Through Excellence | Explore Our Diverse Animation Portfolio",
-    description: "Explore the magic that unfolds when imagination meets expertise, and witness how each project tells a unique story in the language of visual brilliance.",
+    title: "",
+    description: "",
     // Canonical
-    alternates: { canonical: 'https://infinity-animation.vercel.app/portfolio/' },
+    alternates: { canonical: 'https://ai-pro-resume-next.vercel.app/' },
     // OG Metas
     openGraph: {
-        title: 'Journey Through Excellence | Explore Our Diverse Animation Portfolio',
-        description: 'Explore the magic that unfolds when imagination meets expertise, and witness how each project tells a unique story in the language of visual brilliance.',
-        url: 'https://infinity-animation.vercel.app/portfolio/',
-     siteName: 'InFinity Animation',
+        title: '',
+        description: '',
+        url: 'https://ai-pro-resume-next.vercel.app/',
+        siteName: 'InFinity Animation',
         locale: 'en_US',
         type: 'website',
     },
+    //===== No-Index =====
+    robots: {
+        index: false,
+        follow: false,
+        googleBot: {
+            index: false,
+            follow: false,
+            noimageindex: false,
+            'max-snippet': -1,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+        },
+    }
 }
 
-export default function RootLayout({ children } : any) {
+export default function RootLayout({ children }: any) {
     return (children);
 }

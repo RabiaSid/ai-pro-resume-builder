@@ -12,7 +12,6 @@ interface User {
 }
 
 const pricing = () => {
-  const [packages, setPackages] = useState<any[]>([]);
   const [packageDetailText, setPackageDetailText] = useState<any>("");
   const [scroll_checking, set_scroll_checking] = useState(0);
 

@@ -1,6 +1,5 @@
 "use client"
 import React, { useState, useEffect } from "react"
-import { usePathname, useRouter } from "next/navigation"
 // import { usePathname } from "next/navigation"
 // import { PopupProvider } from "./configs/store/Popup"
 

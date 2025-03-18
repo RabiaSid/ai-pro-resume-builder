@@ -9,6 +9,7 @@ const Search = () => {
   const handleKeyUp = (event: any) => {
     setSearchTerm(event.target.value);
   };
+  console.log(searchTerm);
 
   return (
     <>

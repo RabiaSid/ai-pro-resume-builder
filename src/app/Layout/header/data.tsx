@@ -45,7 +45,7 @@ export const menuItems: MenuItem[] = [
     name: "Cover Letter",
     submenu: [
       { name: "Cover Letter Templates", path: "/cover-templates" },
-      { name: "Cover Letter Examples", path: "/" },
+      { name: "Cover Letter Examples", path: "/cover-examples" },
       { name: "Cover Letter format", path: "/" },
       { name: "How to write a cover letter", path: "/" },
     ],

@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
 import { IoInformationCircle } from 'react-icons/io5'
 import { Controller, useForm } from "react-hook-form";
@@ -40,6 +40,8 @@ export default function page() {
     } = useForm({
         mode: "onChange"
     });
+
+    console.log(rememberMe);
 
     const handleCheckCaptcha = () => {
         setVerified(true);

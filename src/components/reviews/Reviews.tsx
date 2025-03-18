@@ -1,11 +1,8 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import Slider from "react-slick";
-// import axios from "axios";
-import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
-import { MdOutlineStar } from "react-icons/md";
-import { IoIosStarOutline } from "react-icons/io";
+import React, { useState } from "react";
+// ==========
+import { AutoPlaySlider } from "@/components";
 import ReviewCard from "../common/card/ReviewCard";
 import { H2, Medium } from "@/components/typography";
 
@@ -54,8 +51,6 @@ const Reviews = (props: propsType) => {
     },
   ]);
 
-  const reviewsSliderRef: any = useRef(null);
-
   return (
     <>
       <section className="bg-[#eeeef1] pt-6 mt-5 py-10">
@@ -71,66 +66,21 @@ const Reviews = (props: propsType) => {
             </div>
           </div>
 
-          <div className="bg-opacity-25 flex flex-col w-full h-fit  items-center px-4 mb-10 mt-4 relative">
+          <div className="bg-opacity-25 flex flex-col w-full h-fit items-center px-4 mb-10 mt-4 relative">
             <div className="w-full our__reviews">
-              {our_reviews.length > 0 && (
-                <Slider
-                  ref={reviewsSliderRef}
-                  {...{
-                    dots: true,
-                    infinite: true,
-                    speed: 500,
-                    slidesToShow: 3,
-                    slidesToScroll: 2,
-                    arrows: false,
-                  }}
-                  responsive={[
-                    {
-                      breakpoint: 1300,
-                      settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
-                        infinite: true,
-                        dots: true,
-                      },
-                    },
-                    {
-                      breakpoint: 800,
-                      settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        initialSlide: 1,
-                      },
-                    },
-                    {
-                      breakpoint: 480,
-                      settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                      },
-                    },
-                  ]}
-                >
-                  {our_reviews?.map((rev, idx) => (
+              <AutoPlaySlider
+                options={{ align: "start" }}
+                arrowPosition="absolute left-[6%] xl:left-[5%] bottom-[-20%] md:bottom-[-5%] justify-between w-[88%] xl:w-[90%]"
+              >
+                {our_reviews?.map((rev, idx) => (
+                  <div
+                    key={idx}
+                    className="grow-0 shrink-0 basis-[100%] md:basis-[50%] xl:basis-1/3 pl-5"
+                  >
                     <ReviewCard key={idx} review={rev} />
-                  ))}
-                </Slider>
-              )}
-            </div>
-            <div className="absolute -bottom-8 flex justify-between h-8 px-4 gap-12 w-full items-center">
-              <div
-                className="z-10 hidden sm:block"
-                onClick={() => reviewsSliderRef.current.slickPrev()}
-              >
-                <FaLongArrowAltLeft className="text-primaryGreen text-2xl cursor-pointer transition-all hover:text-3xl" />
-              </div>
-
-              <div
-                className="z-10 hidden sm:block"
-                onClick={() => reviewsSliderRef.current.slickNext()}
-              >
-                <FaLongArrowAltRight className="text-primaryGreen text-2xl cursor-pointer transition-all hover:text-3xl" />
-              </div>
+                  </div>
+                ))}
+              </AutoPlaySlider>
             </div>
           </div>
         </div>
@@ -138,5 +88,4 @@ const Reviews = (props: propsType) => {
     </>
   );
 };
-
 export default Reviews;

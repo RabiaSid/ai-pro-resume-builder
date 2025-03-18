@@ -44,7 +44,7 @@ export default function AppButton(props: propType) {
                 ${altColor ? altColor : "hover:border-primaryBlue"} 
                
                 inline-flex ${width ? width : "w-full"} ${
-              padding ? padding : "py-2 px-6 xl:py-3 xl:px-12"
+              padding ? padding : "py-2 px-6 xl:py-3 xl:px-8"
             } ${border ? border : "rounded-full"} justify-center 
                 items-center font-semibold sm:text-lg tracking-normal uppercase  
                 `
@@ -56,7 +56,7 @@ export default function AppButton(props: propType) {
         className={
           childClassName
             ? childClassName
-            : ` sm:tracking-widest relative ${
+            : `font-medium sm:tracking-widest relative ${
                 altColor ? altColor : "group-hover:text-primaryBlue"
               } ${altColor ? altColor : "text-white"}`
         }

@@ -11,35 +11,24 @@ import { FiPhone } from 'react-icons/fi';
 import { CgClose } from 'react-icons/cg';
 import SunEditor from 'suneditor-react';
 import AppButton from '@/components/common/button/pages';
-import ProfileSection from '@/components/profileSection/profileSection';
 import { userAwards, userCertificates, userEducation, userExperiences, userLanguages, userProfile, userReferences, userSoftSkills, userTechnicalSkills } from '@/redux/slices/profileSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store'
-import { AwardsCategoryData, CertificatesCategoryData, EducationCategoryData, ExperienceCategoryData, LanguagesCategoryData, ReferencesCategoryData } from './data';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import { AiIcon } from '@/constant/icon';
 import CustomSelect from '@/components/common/customSelect/CustomSelect';
 import { Controller, useForm } from 'react-hook-form';
-import AppInputField from '@/components/common/inpufield/page';
 import MultiInputField from '@/components/common/multiInputField/MultiInputField';
+import ProfileSection from '@/components/profile/profileSection/profileSection';
 
 export default function Account() {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
-  const { profile, softSkills, technicalSkills, education, awards, certificates, experiences, languages, references } = useSelector((state: RootState) => state.profile);
+  const { profile, education, awards, certificates, experiences, languages, references } = useSelector((state: RootState) => state.profile);
   const { token } = useSelector((state: RootState) => state.auth);
   const [modelbox, setModelbox] = useState<boolean>(false);
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
-
-  const profileSections = [
-    { id: 1, name: experiences },
-    { id: 2, name: education },
-    { id: 3, name: awards },
-    { id: 4, name: certificates },
-    { id: 5, name: languages },
-    { id: 6, name: references }
-  ]
   const modalRef = useRef<any>(null);
 
   const handleUserImageChange = (e: any) => {
@@ -241,7 +230,6 @@ export default function Account() {
               </div>
             </div>
           </div>
-
           <div className="px-5 xl:px-16  divide-y-[0.5px]">
             <div className="py-4 ">
               <div className='font-Lexend text-[#0072b1] text-lg font-bold mb-2'>
@@ -258,20 +246,13 @@ export default function Account() {
                 ))}
               </div>
             </div>
-
-            {/* <ProfileSection sectionName="experiences" sectionType={experiences} />
+            <ProfileSection sectionName="experiences" sectionType={experiences} />
             <ProfileSection sectionName="education" sectionType={education} />
             <ProfileSection sectionName="certificates" sectionType={certificates} />
             <ProfileSection sectionName="awards" sectionType={awards} />
             <ProfileSection sectionName="languages" sectionType={languages} />
-            <ProfileSection sectionName="references" sectionType={references} /> */}
-            {profileSections.length &&
-              profileSections?.map((section, index) => (
-                <ProfileSection sectionName={section?.name} sectionType={section?.name} />
-              ))
-            }
+            <ProfileSection sectionName="references" sectionType={references} />
           </div>
-
           <div className="mt-4  px-5 xl:px-0">
             <>
               <p className="font-Lexend text-4xl font-bold text-[#1877F2]">

@@ -1,7 +1,5 @@
 'use client'
-import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
+import React, { Suspense, useEffect, useState } from 'react'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
 import { Controller, useForm } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";

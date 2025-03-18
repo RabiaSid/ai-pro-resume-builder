@@ -7,6 +7,7 @@ import ReduxProvider from "@/redux/Provider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "suneditor/dist/css/suneditor.min.css";
+import { Suspense } from "react";
 
 // Meta Data
 const lexend = Lexend({
@@ -16,30 +17,45 @@ const lexend = Lexend({
 
 export const metadata: Metadata = {
   // Title & Descriptions
-  title: "Your Vision Coupled with Creative Excellence",
-  description: "Explore our animation studio's diverse services, where creativity meets precision, bringing your ideas to life in captivating motion.",
+  title: "",
+  description: "",
   // Canonical
-  alternates: { canonical: 'https://infinity-animation.vercel.app/' },
+  alternates: { canonical: 'https://ai-pro-resume-next.vercel.app/' },
   // OG Metas
   openGraph: {
-    title: "Your Vision Coupled with Creative Excellence",
-    description: "Explore our animation studio's diverse services, where creativity meets precision, bringing your ideas to life in captivating motion.",
-    url: 'https://infinity-animation.vercel.app/',
-    siteName: 'Infinity Animation',
+    title: "",
+    description: "",
+    url: 'https://ai-pro-resume-next.vercel.app/',
+    siteName: 'Ai Pro Resume',
     locale: 'en_US',
     type: 'website',
   },
+  //===== No-Index =====
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: false,
+      'max-snippet': -1,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+    },
+  }
 }
 export default function RootLayout({ children }: any) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={lexend.className}>
         <ReduxProvider>
-          <ConditionalLayout>
-            <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_google_app_id ?? ""}>
-              {children}
-            </GoogleOAuthProvider>
-          </ConditionalLayout>
+          <Suspense>
+            <ConditionalLayout>
+              <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_google_app_id ?? ""}>
+                {children}
+              </GoogleOAuthProvider>
+            </ConditionalLayout>
+          </Suspense>
         </ReduxProvider>
       </body>
     </html>

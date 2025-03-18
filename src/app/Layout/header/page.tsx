@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -19,7 +21,9 @@ export default function Header() {
     const { token } = useSelector((state: RootState) => state.auth);
     const [menuOpen, setMenuOpen] = useState(false);
     const [submenuOpen, setSubmenuOpen] = useState(false);
+    const [submenuOpen2, setSubmenuOpen2] = useState(false);
     const [submenu, setSubmenu] = useState<{ [key: number]: boolean }>({});
+    const [submenu2, setSubmenu2] = useState<{ [key: number]: boolean }>({});
     const [isMobile, setIsMobile] = useState(false);
     const modalRef = useRef<HTMLDivElement | null>(null);
 
@@ -38,6 +42,16 @@ export default function Header() {
     const toggleSubmenu = (index: number) => {
         setSubmenuOpen(!submenuOpen)
         setSubmenu((prev) => {
+            const newState: { [key: number]: boolean } = {};
+            Object.keys(prev).forEach((key) => {
+                newState[Number(key)] = false;
+            });
+            return { ...newState, [index]: !prev[index] };
+        });
+    };
+    const toggleSubmenu2 = (index: number) => {
+        setSubmenuOpen2(!submenuOpen2)
+        setSubmenu2((prev) => {
             const newState: { [key: number]: boolean } = {};
             Object.keys(prev).forEach((key) => {
                 newState[Number(key)] = false;
@@ -218,23 +232,23 @@ export default function Header() {
                                     </Link>
                                 ) : (
                                     /* Dropdown Menu */
-                                    <div ref={modalRef} className=''>
+                                    <div ref={modalRef} className='' onClick={() => toggleSubmenu2(index)}>
                                         <button
-                                            onClick={() => toggleSubmenu(index)}
+
                                             className={`py-2 text-gray-600 rounded hover:text-primaryBlue transition-colors duration-300 flex items-center gap-2`}
                                         >
                                             {item.leftIcon}  <span className={styles.navFont}>{item.name} </span>
                                             <BiCaretDown
-                                                className={`mt-1 ${submenuOpen && submenu[index] ? "transform rotate-180" : ""
+                                                className={`mt-1 ${submenuOpen2 && submenu2[index] ? "transform rotate-180" : ""
                                                     }`}
                                                 size={24}
                                             />
                                         </button>
 
                                         <div className={`absolute left-0 mt-1 w-48 bg-white border transition-all duration-300 overflow-hidden shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-xl 
-                                        ${submenuOpen === true && submenu[index] ? "block" : "hidden"} lg:group-hover:block divide-y-2 `}
-                                            onMouseEnter={() => setSubmenuOpen(true)}
-                                            onMouseLeave={() => setSubmenuOpen(false)}>
+                                        ${submenuOpen2 === true && submenu2[index] ? "block" : "hidden"} lg:group-hover:block divide-y-2 `}
+                                            onMouseEnter={() => setSubmenuOpen2(true)}
+                                            onMouseLeave={() => setSubmenuOpen2(false)}>
                                             {item.submenu.map((sub, subIndex) => (
                                                 <Link key={subIndex} href={sub.path} className="flex flex-col px-1 py-2 transition  text-gray-700 ">
                                                     <span className={`${styles.navFontSubmenu} hover:bg-primaryBlue hover:text-white rounded-lg p-2`}>{sub.name}</span>
