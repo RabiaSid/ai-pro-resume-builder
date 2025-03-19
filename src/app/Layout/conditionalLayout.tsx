@@ -11,13 +11,13 @@ import { OldAPI } from "@/services/oldService"
 const ConditionalLayout = ({ children }: any) => {
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        setLoading(true);
-        OldAPI.get("settings-for-website").then((res) => {
-            console.log(res, "res");
-            setLoading(false);
-        });
-    }, []);
+    // useEffect(() => {
+    //     setLoading(true);
+    //     OldAPI.get("settings-for-website").then((res) => {
+    //         console.log(res, "res");
+    //         setLoading(false);
+    //     });
+    // }, []);
 
     return (
         // <PopupProvider value={{ popup, togglePopup }}>
