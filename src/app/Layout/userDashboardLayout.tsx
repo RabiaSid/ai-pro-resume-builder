@@ -2,12 +2,15 @@
 import React, { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 // import { PopupProvider } from "./configs/store/Popup"
+
 import Header from "@/app/Layout/header/page"
+import UserHeader from "@/app/Layout/user-header/page"
 import Footer from "@/app/Layout/footer/page"
 import SpinnerLoader from "@/components/common/loader/SpinnerLoader"
 import { OldAPI } from "@/services/oldService"
+import UserSideBar from "@/app/Layout/user-sidebar/page"
 
-const ConditionalLayout = ({ children }: any) => {
+const UserDashboardLayout = ({ children }: any) => {
     const pathname = usePathname()
     const [loading, setLoading] = useState(false);
 
@@ -20,16 +23,18 @@ const ConditionalLayout = ({ children }: any) => {
     // }, []);
 
     return (
-        <>
-            {pathname !== "/create-resume/formatting" && (
-                <Header />
+        <div className="bg-gray-50">
+            {pathname == "/create-resume/formatting" && (
+                <UserHeader />
             )}
-            {loading ? <SpinnerLoader /> : children}
-            {pathname !== "/create-resume/formatting" && (
-                <Footer />
-            )}
-        </>
+            <div className="flex">
+                {pathname == "/create-resume/formatting" && (
+                    <UserSideBar />
+                )}
+                {loading ? <SpinnerLoader /> : children}
+            </div>
+        </div>
     )
 }
 
-export default ConditionalLayout
+export default UserDashboardLayout

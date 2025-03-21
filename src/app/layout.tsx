@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "suneditor/dist/css/suneditor.min.css";
 import { Suspense } from "react";
+import UserDashboardLayout from "./Layout/userDashboardLayout";
 
 // Meta Data
 const lexend = Lexend({
@@ -45,16 +46,19 @@ export const metadata: Metadata = {
   }
 }
 export default function RootLayout({ children }: any) {
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={lexend.className}>
         <ReduxProvider>
           <Suspense>
-            <ConditionalLayout>
-              <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_google_app_id ?? ""}>
-                {children}
-              </GoogleOAuthProvider>
-            </ConditionalLayout>
+            <UserDashboardLayout>
+              <ConditionalLayout>
+                <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_google_app_id ?? ""}>
+                  {children}
+                </GoogleOAuthProvider>
+              </ConditionalLayout>
+            </UserDashboardLayout>
           </Suspense>
         </ReduxProvider>
       </body>

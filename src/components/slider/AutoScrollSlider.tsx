@@ -3,11 +3,18 @@
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 
-export default function AutoScrollSlider({
-  wrapperClasses = " ",
-  direction = "forward",
-  children,
-}) {
+type propsType = {
+  wrapperClasses?: string;
+  direction?: any;
+  children?: React.ReactNode;
+}
+
+export default function AutoScrollSlider(props: propsType) {
+  const {
+    wrapperClasses = " ",
+    direction = "forward",
+    children,
+  } = props
   const plugins = [
     AutoScroll({
       playOnInit: true,
