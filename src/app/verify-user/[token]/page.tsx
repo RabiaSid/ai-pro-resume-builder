@@ -1,27 +1,30 @@
 'use client'
 import Image from 'next/image';
-import { useSearchParams, useRouter } from 'next/navigation';
-import { Suspense, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import miniLogo from 'media/assets/mini-logo.webp';
 import miniAlert from 'media/assets/miniAlert.webp';
 import { API } from '@/services/backendService';
 
-const VerifyUserPage = () => {
-    const searchParams = useSearchParams();
-    const token = searchParams.get('token');
+interface VerifyUserPageProps {
+    params: { token: string };
+}
+
+const VerifyUserPage = ({ params }: VerifyUserPageProps) => {
     const router = useRouter();
+    const [token, setToken] = useState<string | null>(null);
 
     useEffect(() => {
-        if (token) {
-            console.log('Token:', token);
-            // You apican call your API here for verification
-            // setLoading(true);
-            API.get(`verify-email/${token}`).then((res) => {
+        if (params?.token) {
+            setToken(params.token);
+            console.log('TokenTokenToken:', params.token);
+
+            // Call your API here for verification
+            API.get(`verify-email/${params.token}`).then((res) => {
                 console.log(res, "resresres");
-                // setLoading(false);
             });
         }
-    }, [token]);
+    }, [params]);
 
     return (
         <>
