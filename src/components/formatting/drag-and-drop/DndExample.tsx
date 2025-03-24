@@ -1,7 +1,7 @@
 "use client";
 
-import { cardsData } from "@/components/formatting/drag-and-drop/CardsData";
 import { useEffect, useState } from "react";
+import { IoIosLock } from "react-icons/io";
 import {
   DragDropContext,
   Droppable,
@@ -10,128 +10,95 @@ import {
 } from "@hello-pangea/dnd";
 import LoadingSkeleton from "@/components/loadingSkeleton/loadingSkeleton";
 
-interface Cards {
-  id: number;
-  title: string;
-  components: {
-    id: number;
-    name: string;
-  }[];
-}
-
 const STORAGE_KEY = "dragAndDropData";
 
-const DndExample = () => {
-  const [data, setData] = useState<Cards[]>([]);
+const initialData = [
+  {
+    id: 0,
+    components: [
+      { id: 101, name: "Language" },
+      { id: 102, name: "Experience", height: "h-[90px]" },
+      { id: 103, name: "Education", height: "h-[90px]" },
+    ],
+  },
+  {
+    id: 1,
+    components: [
+      { id: 201, name: "Skills" },
+      { id: 202, name: "Key Achievements" },
+      { id: 203, name: "Certificate" },
+      { id: 204, name: "Projects" },
+      { id: 205, name: "Interest" },
+    ],
+  },
+];
 
-  // Function to save data to localStorage
-  const saveToLocalStorage = (updatedData: Cards[]) => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedData));
-  };
+type propsType = {
+  doubleColumn?: boolean | string
+}
 
-  // Load data from localStorage when the component mounts
+const DndExample = (props: propsType) => {
+  const { doubleColumn } = props
+  const [data, setData] = useState(initialData);
+
   useEffect(() => {
     const savedData = localStorage.getItem(STORAGE_KEY);
     if (savedData) {
       setData(JSON.parse(savedData));
-    } else {
-      setData(cardsData); // Fallback to default data
     }
   }, []);
 
-  const onDragEnd = (result: DropResult) => {
-    const { source, destination, type } = result;
+  const saveToLocalStorage = (updatedData: any) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedData));
+  };
 
-    // If no destination, return
+  const onDragEnd = (result: DropResult) => {
+    const { source, destination } = result;
     if (!destination) return;
 
     let newData = [...data];
+    const sourceColIndex = newData.findIndex(col => col.id.toString() === source.droppableId);
+    const destColIndex = newData.findIndex(col => col.id.toString() === destination.droppableId);
 
-    if (type === "COLUMN") {
-      // Handle column reordering
-      const [movedColumn] = newData.splice(source.index, 1);
-      newData.splice(destination.index, 0, movedColumn);
-    } else {
-      // Handle items within columns
-      const sourceColumnIndex = newData.findIndex(
-        (col) => col.id.toString() === source.droppableId.split("droppable")[1]
-      );
-      const destinationColumnIndex = newData.findIndex(
-        (col) => col.id.toString() === destination.droppableId.split("droppable")[1]
-      );
+    if (sourceColIndex === -1 || destColIndex === -1) return;
 
-      // Move item from source column
-      const [movedItem] = newData[sourceColumnIndex].components.splice(source.index, 1);
-
-      // Add item to the destination column
-      newData[destinationColumnIndex].components.splice(destination.index, 0, movedItem);
-    }
+    const [movedItem] = newData[sourceColIndex].components.splice(source.index, 1);
+    newData[destColIndex].components.splice(destination.index, 0, movedItem);
 
     setData(newData);
-    saveToLocalStorage(newData); // Save updated data
+    saveToLocalStorage(newData);
   };
 
-  if (!data.length) {
-    return <LoadingSkeleton />;
-  }
+  if (!data.length) return <LoadingSkeleton />;
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <h1 className="text-center mt-8 mb-3 font-bold text-[25px]">Drag and Drop Application</h1>
-      <Droppable droppableId="all-columns" type="COLUMN" direction="horizontal">
-        {(provided) => (
-          <div
-            className="flex gap-4 justify-between my-20 mx-4 flex-col lg:flex-row"
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            {data.map((val, index) => (
-              <Draggable key={val.id} draggableId={`draggable-column-${val.id}`} index={index}>
-                {(provided) => (
-                  <div
-                    {...provided.dragHandleProps}
-                    {...provided.draggableProps}
-                    ref={provided.innerRef}
-                    className="p-5 lg:w-1/3 w-full bg-white border-gray-400 border border-dashed"
-                  >
-                    <Droppable key={index} droppableId={`droppable${val.id}`} type="ITEM">
-                      {(provided) => (
-                        <div {...provided.droppableProps} ref={provided.innerRef}>
-                          <h2 className="text-center font-bold mb-6 text-black">{val.title}</h2>
-                          {val.components.length > 0 ? (
-                            val.components.map((component, index) => (
-                              <Draggable key={component.id} draggableId={`item-${component.id}`} index={index}>
-                                {(provided) => (
-                                  <div
-                                    className="bg-gray-200 mx-1 px-4 py-3 my-3"
-                                    {...provided.dragHandleProps}
-                                    {...provided.draggableProps}
-                                    ref={provided.innerRef}
-                                  >
-                                    {component.name}
-                                  </div>
-                                )}
-                              </Draggable>
-                            ))
-                          ) : (
-                            <div className="text-center text-gray-500">
-                              <h2 className="invisible">No items</h2>
-                            </div> // Empty column placeholder
-                          )}
-                          {provided.placeholder}
-                        </div>
-                      )}
-                    </Droppable>
-                  </div>
-                )}
-              </Draggable>
-            ))}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
+      <div className={`grid  ${doubleColumn ? 'grid-cols-2 gap-4 transition-all duration-300' : 'grid-cols-1 transition-all duration-300 p-4 bg-gray-100 rounded-lg'}`}>
+        {data.map((col) => (
+          <Droppable key={col.id} droppableId={col.id.toString()} type="ITEM">
+            {(provided) => (
+              <div {...provided.droppableProps} ref={provided.innerRef} className={doubleColumn ? "p-4 bg-gray-100 rounded-lg" : ""}>
+                {col.components.map((component, index) => (
+                  <Draggable key={component.id} draggableId={component.id.toString()} index={index}>
+                    {(provided) => (
+                      <div
+                        className={`bg-gray-200 border rounded-lg p-3 mb-2 text-center cursor-pointer  hover:bg-gray-300 ${component.height}`}
+                        {...provided.dragHandleProps}
+                        {...provided.draggableProps}
+                        ref={provided.innerRef}
+                      >
+                        {component.name}
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        ))}
+      </div>
     </DragDropContext>
   );
 };
-
 export default DndExample;
