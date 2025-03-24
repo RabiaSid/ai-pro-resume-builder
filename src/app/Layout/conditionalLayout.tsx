@@ -6,6 +6,8 @@ import Header from "@/app/Layout/header/page"
 import Footer from "@/app/Layout/footer/page"
 import SpinnerLoader from "@/components/common/loader/SpinnerLoader"
 import { OldAPI } from "@/services/oldService"
+import UserHeader from "./user-header/page"
+import UserSideBar from "./user-sidebar/page"
 
 const ConditionalLayout = ({ children }: any) => {
     const pathname = usePathname()
@@ -21,13 +23,20 @@ const ConditionalLayout = ({ children }: any) => {
 
     return (
         <>
-            {/* {pathname !== "/create-resume/formatting" && ( */}
-            <Header />
-            {/* )} */}
-            {loading ? <SpinnerLoader /> : children}
-            {/* {pathname !== "/create-resume/formatting" && ( */}
-            <Footer />
-            {/* )} */}
+            <div className={`${pathname === "/create-resume/formatting" ? "bg-gray-50" : null}`}>
+                {pathname !== "/create-resume/formatting" ? (
+                    <Header />
+                ) : <UserHeader />}
+                <div className={`${pathname === "/create-resume/formatting" ? "flex" : null}`}>
+                    {pathname === "/create-resume/formatting" ? (
+                        <UserSideBar />
+                    ) : null}
+                    {loading ? <SpinnerLoader /> : children}
+                </div>
+                {pathname !== "/create-resume/formatting" ? (
+                    <Footer />
+                ) : null}
+            </div>
         </>
     )
 }
