@@ -21,13 +21,13 @@ const ConditionalLayout = ({ children }: any) => {
 
     return (
         <>
-            {pathname !== "/create-resume/formatting" && (
-                <Header />
-            )}
+            {/* {pathname !== "/create-resume/formatting" && ( */}
+            <Header />
+            {/* )} */}
             {loading ? <SpinnerLoader /> : children}
-            {pathname !== "/create-resume/formatting" && (
-                <Footer />
-            )}
+            {/* {pathname !== "/create-resume/formatting" && ( */}
+            <Footer />
+            {/* )} */}
         </>
     )
 }

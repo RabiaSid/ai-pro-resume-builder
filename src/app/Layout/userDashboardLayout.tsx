@@ -24,11 +24,11 @@ const UserDashboardLayout = ({ children }: any) => {
 
     return (
         <div className="bg-gray-50">
-            {pathname == "/create-resume/formatting" && (
+            {pathname === "/create-resume/formatting" && (
                 <UserHeader />
             )}
             <div className="flex">
-                {pathname == "/create-resume/formatting" && (
+                {pathname === "/create-resume/formatting" && (
                     <UserSideBar />
                 )}
                 {loading ? <SpinnerLoader /> : children}

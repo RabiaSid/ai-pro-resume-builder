@@ -52,13 +52,13 @@ export default function RootLayout({ children }: any) {
       <body className={lexend.className}>
         <ReduxProvider>
           <Suspense>
-            <UserDashboardLayout>
-              <ConditionalLayout>
-                <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_google_app_id ?? ""}>
-                  {children}
-                </GoogleOAuthProvider>
-              </ConditionalLayout>
-            </UserDashboardLayout>
+            {/* <UserDashboardLayout> */}
+            <ConditionalLayout>
+              <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_google_app_id ?? ""}>
+                {children}
+              </GoogleOAuthProvider>
+            </ConditionalLayout>
+            {/* </UserDashboardLayout> */}
           </Suspense>
         </ReduxProvider>
       </body>

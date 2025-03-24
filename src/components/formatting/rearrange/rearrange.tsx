@@ -1,12 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-    DragDropContext,
-    Droppable,
-    Draggable,
-    DropResult,
-} from "@hello-pangea/dnd";
+import { DragDropContext, Draggable, Droppable, DropResult } from "@hello-pangea/dnd";
 
 const STORAGE_KEY = "dragAndDropItems";
 
@@ -32,23 +27,25 @@ const DragDropSection = () => {
         }
     }, []);
 
-    // Handle drag and drop
+    // Save items to localStorage on change
+    useEffect(() => {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    }, [items]);
+
     const onDragEnd = (result: DropResult) => {
-        if (!result.destination) return; // If dropped outside, do nothing
+        if (!result.destination) return;
 
         const newItems = [...items];
         const [movedItem] = newItems.splice(result.source.index, 1);
         newItems.splice(result.destination.index, 0, movedItem);
 
         setItems(newItems);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(newItems)); // Save to localStorage
     };
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
             <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg bg-white">
-                {/* Entire section as a single Droppable to allow full rearrangement */}
-                <Droppable droppableId="all-items" direction="vertical">
+                <Droppable droppableId="droppable" direction="vertical">
                     {(provided) => (
                         <div
                             className="grid grid-cols-2 gap-4"
@@ -57,12 +54,16 @@ const DragDropSection = () => {
                         >
                             {items.map((item, index) => (
                                 <Draggable key={item.id} draggableId={item.id} index={index}>
-                                    {(provided) => (
+                                    {(provided, snapshot) => (
                                         <div
                                             ref={provided.innerRef}
                                             {...provided.draggableProps}
                                             {...provided.dragHandleProps}
                                             className={`flex items-center justify-center ${item.color} h-24 rounded-sm bg-gray-50 border`}
+                                            style={{
+                                                opacity: snapshot.isDragging ? 0.9 : 1,
+                                                // transform: snapshot.isDragging ? "rotate(-2deg)" : "",
+                                            }}
                                         >
                                             <p className="text-2xl text-gray-400">{item.name}</p>
                                         </div>
