@@ -45,6 +45,7 @@ export const metadata: Metadata = {
   }
 }
 export default function RootLayout({ children }: any) {
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={lexend.className}>
