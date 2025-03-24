@@ -3,7 +3,14 @@ import React, { useCallback, useEffect, useState } from "react";
 // Media
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 
-export const usePrevNextButtons = (emblaApi) => {
+import type { EmblaCarouselType } from "embla-carousel";
+
+type propsType = {
+  emblaApi?: EmblaCarouselType | null;
+}
+
+export const usePrevNextButtons = (props: propsType) => {
+  const { emblaApi } = props
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
 
@@ -17,7 +24,8 @@ export const usePrevNextButtons = (emblaApi) => {
     emblaApi.scrollNext();
   }, [emblaApi]);
 
-  const onSelect = useCallback((emblaApi) => {
+  const onSelect = useCallback((emblaApi: any) => {
+    if (!emblaApi) return;
     setPrevBtnDisabled(!emblaApi.canScrollPrev());
     setNextBtnDisabled(!emblaApi.canScrollNext());
   }, []);
@@ -37,7 +45,7 @@ export const usePrevNextButtons = (emblaApi) => {
   };
 };
 
-export const PrevButton = (props) => {
+export const PrevButton = (props: any) => {
   const { children, ...restProps } = props;
 
   return (
@@ -47,7 +55,7 @@ export const PrevButton = (props) => {
   );
 };
 
-export const NextButton = (props) => {
+export const NextButton = (props: any) => {
   const { children, ...restProps } = props;
 
   return (
