@@ -9,29 +9,9 @@ import {
   DropResult,
 } from "@hello-pangea/dnd";
 import LoadingSkeleton from "@/components/loadingSkeleton/loadingSkeleton";
+import { cardsData } from "./CardsData";
 
 const STORAGE_KEY = "dragAndDropData";
-
-const initialData = [
-  {
-    id: 0,
-    components: [
-      { id: 101, name: "Language" },
-      { id: 102, name: "Experience", height: "h-[90px]" },
-      { id: 103, name: "Education", height: "h-[90px]" },
-    ],
-  },
-  {
-    id: 1,
-    components: [
-      { id: 201, name: "Skills" },
-      { id: 202, name: "Key Achievements" },
-      { id: 203, name: "Certificate" },
-      { id: 204, name: "Projects" },
-      { id: 205, name: "Interest" },
-    ],
-  },
-];
 
 type propsType = {
   doubleColumn?: boolean | string
@@ -39,18 +19,18 @@ type propsType = {
 
 const DndExample = (props: propsType) => {
   const { doubleColumn } = props
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState(cardsData);
 
-  useEffect(() => {
-    const savedData = localStorage.getItem(STORAGE_KEY);
-    if (savedData) {
-      setData(JSON.parse(savedData));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const savedData = localStorage.getItem(STORAGE_KEY);
+  //   if (savedData) {
+  //     setData(JSON.parse(savedData));
+  //   }
+  // }, []);
 
-  const saveToLocalStorage = (updatedData: any) => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedData));
-  };
+  // const saveToLocalStorage = (updatedData: any) => {
+  //   localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedData));
+  // };
 
   const onDragEnd = (result: DropResult) => {
     const { source, destination } = result;
@@ -62,12 +42,30 @@ const DndExample = (props: propsType) => {
 
     if (sourceColIndex === -1 || destColIndex === -1) return;
 
-    const [movedItem] = newData[sourceColIndex].components.splice(source.index, 1);
-    newData[destColIndex].components.splice(destination.index, 0, movedItem);
+    const sourceComponents = newData[sourceColIndex].components;
+    const destComponents = newData[destColIndex].components;
 
+    // Get the item being moved
+    const [movedItem] = sourceComponents.splice(source.index, 1);
+
+    // 1. Prevent moving a locked item from its position
+    if (movedItem.locked) {
+      sourceComponents.splice(source.index, 0, movedItem); // Put it back
+      return;
+    }
+
+    // 2. Prevent dropping any item at index 0 if it's locked (like "Summary")
+    if (destination.index === 0 && destComponents[0]?.locked) {
+      sourceComponents.splice(source.index, 0, movedItem); // Put it back
+      return;
+    }
+
+    // Move the item
+    destComponents.splice(destination.index, 0, movedItem);
     setData(newData);
-    saveToLocalStorage(newData);
   };
+
+
 
   if (!data.length) return <LoadingSkeleton />;
 
@@ -82,12 +80,12 @@ const DndExample = (props: propsType) => {
                   <Draggable key={component.id} draggableId={component.id.toString()} index={index}>
                     {(provided) => (
                       <div
-                        className={`bg-gray-200 border rounded-lg p-3 mb-2 text-center cursor-pointer  hover:bg-gray-300 ${component.height}`}
-                        {...provided.dragHandleProps}
-                        {...provided.draggableProps}
+                        className={`bg-gray-200 border rounded-lg p-3 my-2 text-center cursor-pointer hover:bg-gray-300 ${component.height} ${component.locked && index === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        {...(component.locked && index === 0 ? {} : { ...provided.dragHandleProps, ...provided.draggableProps })}
                         ref={provided.innerRef}
                       >
                         {component.name}
+                        {(component.locked && index === 0) && <IoIosLock size={18} className="inline ml-2 text-slate-800" />}
                       </div>
                     )}
                   </Draggable>

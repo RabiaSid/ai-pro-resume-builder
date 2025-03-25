@@ -5,7 +5,7 @@ interface Cards {
     name: string;
     height?: string;
     width?: string;
-    // locked?: boolean | string
+    locked?: boolean | string
   }[];
 }
 
@@ -13,50 +13,21 @@ export const cardsData: Cards[] = [
   {
     id: 0,
     components: [
-      {
-        id: 100,
-        name: "Summary"
-      },
-      {
-        id: 200,
-        name: "Experience",
-        height: "h-[90px]"
-      },
-      {
-        id: 300,
-        name: "Education",
-        height: "h-[90px]"
-      },
-      {
-        id: 400,
-        name: "Language"
-      },
-    ]
+      { id: 101, name: "Summary", locked: true },
+      { id: 102, name: "Experience", height: "h-[90px]" },
+      { id: 103, name: "Education", height: "h-[90px]" },
+      { id: 104, name: "Language" },
+    ],
   },
   {
     id: 1,
     components: [
-      {
-        id: 100,
-        name: "Skills"
-      },
-      {
-        id: 200,
-        name: "Key Achievements"
-      },
-      {
-        id: 300,
-        name: "Certificate"
-      },
-      {
-        id: 400,
-        name: "Projects"
-      },
-      {
-        id: 500,
-        name: "Interest"
-      },
-    ]
+      { id: 201, name: "Skills" },
+      { id: 202, name: "Key Achievements" },
+      { id: 203, name: "Certificate" },
+      { id: 204, name: "Projects" },
+      { id: 205, name: "Interest" },
+    ],
   },
 ]
 
