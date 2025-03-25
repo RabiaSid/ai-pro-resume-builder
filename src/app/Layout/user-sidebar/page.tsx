@@ -1,6 +1,7 @@
+import CustomModal from "@/components/common/modal/customModal";
 import Link from "next/link";
-import React from "react";
-import { MdWbCloudy } from "react-icons/md";
+import React, { useState } from "react";
+import { MdWarehouse, MdWbCloudy } from "react-icons/md";
 
 type sidebarItem = {
   name: string;
@@ -9,17 +10,26 @@ type sidebarItem = {
   badge?: string | null;
 };
 
-const sidebarItems: sidebarItem[] = [
-  { name: "Dashboard", icon: <MdWbCloudy size={24} /> },
-  { name: "Kanban", icon: <MdWbCloudy size={24} />, badge: "Pro" },
-  { name: "Inbox", icon: <MdWbCloudy size={24} />, badge: "3" },
-  { name: "Users", icon: <MdWbCloudy size={24} /> },
-  { name: "Products", icon: <MdWbCloudy size={24} /> },
-  { name: "Sign In", icon: <MdWbCloudy size={24} /> },
-  { name: "Sign Up", icon: <MdWbCloudy size={24} /> },
-];
-
 export default function UserSideBar() {
+  const [addSectionModal, setAddSectionModal] = useState(false);
+  const sidebarItems: sidebarItem[] = [
+    { name: "Dashboard", icon: <MdWbCloudy size={24} /> },
+    { name: "Kanban", icon: <MdWbCloudy size={24} />, badge: "Pro" },
+    { name: "Inbox", icon: <MdWbCloudy size={24} />, badge: "3" },
+    {
+      name: "Users",
+      icon: (
+        <MdWarehouse
+          size={24}
+          onClick={() => setAddSectionModal(!addSectionModal)}
+        />
+      ),
+    },
+    { name: "Products", icon: <MdWbCloudy size={24} /> },
+    { name: "Sign In", icon: <MdWbCloudy size={24} /> },
+    { name: "Sign Up", icon: <MdWbCloudy size={24} /> },
+  ];
+
   return (
     <>
       <button
@@ -60,6 +70,12 @@ export default function UserSideBar() {
           </ul>
         </div>
       </div>
+      {addSectionModal && (
+        <CustomModal
+          addSectionModal={addSectionModal}
+          setAddSectionModal={setAddSectionModal}
+        />
+      )}
     </>
   );
 }
