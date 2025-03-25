@@ -1,63 +1,30 @@
-import Link from 'next/link';
-import React from 'react'
-import { MdWbCloudy } from 'react-icons/md';
+import React from "react";
 
-type sidebarItem = {
-    name: string;
-    icon: React.ReactNode;
-    onClick?: () => void;
-    badge?: string | null;
-}
-
-
-const sidebarItems: sidebarItem[] = [
-    { name: "Dashboard", icon: <MdWbCloudy size={24} /> },
-    { name: "Kanban", icon: <MdWbCloudy size={24} />, badge: "Pro" },
-    { name: "Inbox", icon: <MdWbCloudy size={24} />, badge: "3" },
-    { name: "Users", icon: <MdWbCloudy size={24} /> },
-    { name: "Products", icon: <MdWbCloudy size={24} /> },
-    { name: "Sign In", icon: <MdWbCloudy size={24} /> },
-    { name: "Sign Up", icon: <MdWbCloudy size={24} /> },
-];
-
-
-export default function UserSideBar() {
-
+const AddSectionModal = () => {
     return (
-        <>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white rounded-2xl p-6 w-[800px]">
 
-            <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200   ">
-                <span className="sr-only">Open sidebar</span>
-                {/* <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path clipRule="evenodd" fillRule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-                </svg> */}
-            </button>
+                <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-2xl font-bold">Add a new section</h2>
+                    <button className="text-gray-500 text-xl">&times;</button>
+                </div>
 
-            <div className="z-40 w-20 h-screen transition-transform -translate-x-full sm:translate-x-0 border-r" >
-                <div className="h-full px-3 py-8 overflow-y-auto bg-white ">
-                    <ul className="space-y-4 font-medium">
-                        {sidebarItems?.map((item, index) => (
-                            <li key={index} className='flex justify-center'>
-                                <button onClick={item.onClick} className="flex items-center py-2 px-4 text-gray-900 rounded-lg hover:bg-gray-100 group">
-                                    {item.icon}
-                                    {/* <svg className="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
-                                        <path d={IconMap[item.icon]} />
-                                    </svg> */}
-                                    {/* <span className="ms-3 flex-1 whitespace-nowrap">{item.name}</span>
-                                    {item.badge && (
-                                        <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full">
-                                            {item.badge}
-                                        </span>
-                                    )} */}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
+                <p className="text-gray-600 mb-6">Click on a section to add it to your resume</p>
+
+                <div className="flex space-x-4">
+                    {/* Summary Card */}
+                    <div className="group hover:bg-gray-600 relative w-64 h-40 bg-gray-200 rounded-xl p-4 flex flex-col justify-between hover:bg-opacity-80 transition-all cursor-pointer">
+                        <div>
+                            <h3 className="font-bold">SUMMARY</h3>
+                            <p className="text-sm text-gray-600 mt-2">When I was 21, I climbed Mount Everest. Not metaphorically, I literally climbed the highest mountain on Earth...</p>
+                        </div>
+                        <button className="absolute inset-12 bg-purple-700 bg-opacity-80 text-white text-center py-2 rounded-xl opacity-0 group-hover:opacity-100 transition-all">Add to resume</button>
+                    </div>
                 </div>
             </div>
+        </div>
+    );
+};
 
-
-
-        </>
-    )
-}
+export default AddSectionModal;
