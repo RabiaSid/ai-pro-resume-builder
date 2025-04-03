@@ -45,6 +45,10 @@ export default {
         rotate: "rotate 50s cubic-bezier(0.8, 0.2, 0.2, 0.8) infinite alternate",
 
       },
+      backgroundImage: {
+        'primary': 'linear-gradient(to right, #F8F8F8, #E9E9E9)',
+        'secondary': 'linear-gradient(to right, #9885FF, #79A9FF)',
+      },
     },
   },
   plugins: [],
