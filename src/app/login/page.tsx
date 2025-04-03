@@ -157,7 +157,7 @@ export default function page() {
                     </div>
 
                     <div>
-                        <LinkedInLogin />
+                        {/* <LinkedInLogin /> */}
                     </div>
                 </div>
 

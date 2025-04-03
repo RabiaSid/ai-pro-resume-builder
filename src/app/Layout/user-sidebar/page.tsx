@@ -45,8 +45,8 @@ export default function UserSideBar() {
                 </svg> */}
       </button>
 
-      <div className="z-40 w-20 h-screen transition-transform -translate-x-full sm:translate-x-0 border-r">
-        <div className="h-full px-3 py-8 overflow-y-auto bg-white ">
+      <div className="z-40 w-20 h-screen py-3 px-2 transition-transform -translate-x-full sm:translate-x-0 ">
+        <div className="min-h-[450px] px-3 py-8 overflow-y-auto bg-white border rounded-md">
           <ul className="space-y-4 font-medium">
             {sidebarItems?.map((item, index) => (
               <li key={index} className="flex justify-center">

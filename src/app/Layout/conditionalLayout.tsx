@@ -14,25 +14,23 @@ const ConditionalLayout = ({ children }: any) => {
   const [loading, setLoading] = useState(false);
 
   // useEffect(() => {
-  //     setLoading(true);
-  //     OldAPI.get("settings-for-website").then((res) => {
-  //         console.log(res, "res");
-  //         setLoading(false);
-  //     });
+  //   setLoading(true);
+  //   OldAPI.get("settings-for-website").then((res) => {
+  //     console.log(res, "res");
+  //     setLoading(false);
+  //   });
   // }, []);
 
   return (
     <>
       <div
-        className={`${
-          pathname === "/create-resume/formatting" ? "bg-gray-50" : null
-        }`}
+        className={`${pathname === "/create-resume/formatting" ? "bg-[#f3f4f6]" : null
+          }`}
       >
         {pathname !== "/create-resume/formatting" ? <Header /> : <UserHeader />}
         <div
-          className={`${
-            pathname === "/create-resume/formatting" ? "flex" : null
-          }`}
+          className={`${pathname === "/create-resume/formatting" ? "flex" : null
+            }`}
         >
           {pathname === "/create-resume/formatting" ? <UserSideBar /> : null}
           {loading ? <SpinnerLoader /> : children}
