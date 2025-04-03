@@ -1,6 +1,5 @@
 "use client"
 import React, { useState, useEffect } from 'react'
-import AppButton from '@/components/common/button/pages'
 import ImproveText from '@/components/formatting/improve-text/improveText'
 import Template from '@/components/formatting/Template/template'
 import axios from "axios";
@@ -26,8 +25,6 @@ export default function Formatting() {
         setFile(selectedFile);
     };
 
-    const abc = process.env.NEXT_PUBLIC_EDENAI_API_KEY;
-
     // Log file updates correctly
     useEffect(() => {
         if (file) console.log(file, "Updated file state");
@@ -42,7 +39,9 @@ export default function Formatting() {
         try {
             setLoading(true);
             const formData = new FormData();
+            formData.append("providers", "extracta");
             formData.append("file", file);
+            formData.append("fallback_providers", "extracta");
 
             // Log form data explicitly
             for (let [key, value] of formData.entries()) {
@@ -55,7 +54,7 @@ export default function Formatting() {
                 {
                     headers: {
                         "Content-Type": "multipart/form-data",
-                        Authorization: `Bearer ${abc}`,
+                        Authorization: `Bearer ${process.env.NEXT_PUBLIC_EDENAI_API_KEY}`,
                     },
                 }
             );
