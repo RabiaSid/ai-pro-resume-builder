@@ -9,19 +9,20 @@ import { API } from '@/services/backendService';
 interface VerifyUserPageProps {
     params: { token: string };
 }
-
 const VerifyUserPage = ({ params }: VerifyUserPageProps) => {
     const router = useRouter();
     const [token, setToken] = useState<string | null>(null);
 
     useEffect(() => {
         if (params?.token) {
-            setToken(params.token);
-            console.log('TokenTokenToken:', params.token);
+            // Remove "token%3D" from the start of the token
+            const cleanedToken = params.token.replace(/^token%3D/, '');
+            setToken(cleanedToken);
+            console.log('Cleaned Token:', cleanedToken);
 
             // Call your API here for verification
-            API.get(`verify-email/${params.token}`).then((res) => {
-                console.log(res, "resresres");
+            API.get(`verify-email/${cleanedToken}`).then((res) => {
+                console.log(res, "API ResponseAPI ResponseAPI Response");
             });
         }
     }, [params]);
