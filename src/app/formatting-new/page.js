@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Header, ResumePreview, TextEditor } from "@/components";
+import { ResumePreview, TextEditor } from "@/components";
 
 export default function Page() {
   const [currentState, setCurrentState] = useState({
@@ -46,13 +46,6 @@ export default function Page() {
   return (
     <>
       <div className="text-center">
-        <Header
-          currentState={currentState}
-          handleUndo={handleUndo}
-          handleRedo={handleRedo}
-          history={history}
-          future={future}
-        />
         <div className="grid grid-cols-12 px-5">
           <div className="col-span-4">
             <TextEditor

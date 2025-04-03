@@ -197,7 +197,7 @@ const TextEditor = ({
                 {/* custom Color */}
                 <div className="flex items-center gap-3 border border-gray-400 rounded-sm px-2 w-full">
                   <input type="color" className="w-[11%] h-[32px] border-transparent rounded-full" value={currentState.color} onChange={(e) => updateState({ ...currentState, color: e.target.value })} />
-                  <span className="text-[14px]">{currentState.color}</span>
+                  <span className="text-[14px] font-normal">{currentState.color}</span>
                 </div>
               </div>
 
