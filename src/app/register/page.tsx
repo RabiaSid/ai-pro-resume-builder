@@ -5,7 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
 import { H1 } from "@/components/typography";
 import AppButton from "@/components/common/button/CustomButton";
-import AppInputField from "@/components/common/inpufield/page";
+import AppInputField from "@/components/common/inpufield/CustomInputField";
 import CustomSelect from "@/components/common/customSelect/CustomSelect";
 
 import { useRouter } from "next/navigation";

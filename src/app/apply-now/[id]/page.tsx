@@ -6,7 +6,7 @@ import { Controller, useForm } from "react-hook-form";
 import { BiLoaderAlt } from "react-icons/bi";
 import { MdOutlineSimCardDownload } from "react-icons/md";
 import CustomPhoneNumber from "@/components/common/customSelect/CustomPhoneNumber";
-import AppInputField from "@/components/common/inpufield/page";
+import AppInputField from "@/components/common/inpufield/CustomInputField";
 import CustomSelect from "@/components/common/customSelect/CustomSelect";
 import MainBanner from "@/components/Banner/mainBanner";
 import { ApplyNowBannerData } from "./data";
@@ -31,7 +31,7 @@ const ApplyNow = () => {
     { id: "4", name: "Master's Degree" },
     { id: "5", name: "Ph.D." },
   ]);
-  console.log(verified,);
+  console.log(verified);
 
   const {
     control,
@@ -159,7 +159,7 @@ const ApplyNow = () => {
                   validate: (fileList) =>
                     fileList && fileList.length > 0
                       ? fileList[0].size <= 5 * 1024 * 1024 ||
-                      "File size should be 5MB or less"
+                        "File size should be 5MB or less"
                       : "Resume file is required",
                 }}
                 render={({ field: { onChange, value } }) => (

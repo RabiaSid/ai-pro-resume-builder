@@ -7,7 +7,7 @@ import { Controller, useForm } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
 import { H1 } from "@/components/typography";
 import AppButton from "@/components/common/button/CustomButton";
-import AppInputField from "@/components/common/inpufield/page";
+import AppInputField from "@/components/common/inpufield/CustomInputField";
 import { useRouter } from "next/navigation";
 import Ads from "@/components/ads/Ads";
 import { useDispatch, useSelector } from "react-redux";

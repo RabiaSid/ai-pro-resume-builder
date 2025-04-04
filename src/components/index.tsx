@@ -1,6 +1,18 @@
 import dynamic from "next/dynamic";
 
 const TextEditor = dynamic(() => import("./formatting/TextEditor/TextEditor"));
+const Template = dynamic(() => import("./formatting/Template/template"));
+const Rearrange = dynamic(() => import("./formatting/rearrange/rearrange"));
+const DndContext = dynamic(
+  () => import("./formatting/drag-and-drop/DndContext")
+);
+const DndExample = dynamic(
+  () => import("./formatting/drag-and-drop/DndExample")
+);
+const ImproveText = dynamic(
+  () => import("./formatting/improve-text/improveText")
+);
+
 const NewSection = dynamic(() => import("./formatting/NewSection/NewSection"));
 const ResumePreview = dynamic(
   () => import("./formatting/ResumePreview/ResumePreview")
@@ -15,6 +27,35 @@ const facebookLogin = dynamic(() => import("./socialLogins/facebookLogin"));
 const googleLogin = dynamic(() => import("./socialLogins/googleLogin"));
 const linkedinLogin = dynamic(() => import("./socialLogins/linkedInLogin"));
 const Reviews = dynamic(() => import("./reviews/Reviews"));
+const CustomButton = dynamic(() => import("./common/button/CustomButton"));
+const FlipCard = dynamic(() => import("./common/card/flipCard/FlipCard"));
+const CustomAlert = dynamic(() => import("./common/customAlerts/CustomAlert"));
+const CustomPhoneNumber = dynamic(
+  () => import("./common/customSelect/CustomPhoneNumber")
+);
+const CustomSelect = dynamic(
+  () => import("./common/customSelect/CustomSelect")
+);
+const TextArea = dynamic(() => import("./common/customSelect/TextArea"));
+const SpinnerLoader = dynamic(() => import("./common/loader/SpinnerLoader"));
+const Search = dynamic(() => import("./common/search/Search"));
+const CustomModal = dynamic(() => import("./common/modal/customModal"));
+const Switch = dynamic(() => import("./common/switch/switch"));
+const MultiInputField = dynamic(
+  () => import("./common/multiInputField/MultiInputField")
+);
+const CustomInputField = dynamic(
+  () => import("./common/inpufield/CustomInputField")
+);
+const Carousel = dynamic(() => import("./common/carousel/Carousel"));
+const OnScrollAnimeCard = dynamic(
+  () => import("./common/card/OnScrollAnimeCard")
+);
+const ReviewCard = dynamic(() => import("./common/card/ReviewCard"));
+const ServiceCard = dynamic(() => import("./common/card/ServiceCard"));
+const PackageCard = dynamic(
+  () => import("./common/card/packageCard/PackageCard")
+);
 const PosterBanner = dynamic(() => import("./services/PosterBanner"));
 const UserReferral = dynamic(() => import("./userReferral/UserReferral"));
 const ServiceContent = dynamic(() => import("./services/ServiceContent"));
@@ -28,6 +69,21 @@ const loadingSkeleton = dynamic(
 );
 
 export {
+  CustomAlert,
+  CustomSelect,
+  CustomPhoneNumber,
+  TextArea,
+  Switch,
+  Search,
+  MultiInputField,
+  CustomInputField,
+  CustomModal,
+  SpinnerLoader,
+  OnScrollAnimeCard,
+  Carousel,
+  ServiceCard,
+  PackageCard,
+  ReviewCard,
   AutoPlaySlider,
   AutoScrollSlider,
   TextEditor,
@@ -43,9 +99,16 @@ export {
   PosterBanner,
   ServiceContent,
   Services,
+  FlipCard,
   ServicesSection,
   facebookLogin,
   googleLogin,
   linkedinLogin,
   UserReferral,
+  CustomButton,
+  Template,
+  Rearrange,
+  DndContext,
+  DndExample,
+  ImproveText,
 };
