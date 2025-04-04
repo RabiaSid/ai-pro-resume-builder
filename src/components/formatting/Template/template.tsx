@@ -1,15 +1,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
-type PropType = {
-    grammarCheck: boolean;
-    spellCheck: boolean;
-};
+const ResumeTemplate = () => {
+    const grammarCheck = useSelector((state: any) => state?.ImproveText?.grammarCheck);
+    const spellCheck = useSelector((state: any) => state?.ImproveText?.spellCheck);
 
-const ResumeTemplate = ({ grammarCheck, spellCheck }: PropType) => {
-    const [incorrectWords, setIncorrectWords] = useState<string[]>([]);
-    const [grammarErrors, setGrammarErrors] = useState<string[]>([]);
+    const [incorrectWords, setIncorrectWords] = useState<string[]>([]);  // Initialize as an empty array
+    const [grammarErrors, setGrammarErrors] = useState<string[]>([]);    // Initialize as an empty array
     const [loading, setLoading] = useState(false);
 
     const personalInfo = {
@@ -72,7 +71,7 @@ const ResumeTemplate = ({ grammarCheck, spellCheck }: PropType) => {
                         { text: fullText },
                         { headers: { "Content-Type": "application/json" } }
                     );
-                    spellingMistakes = spellResponse.data.mistakes || [];
+                    spellingMistakes = spellResponse.data?.data?.map((item: any) => item?.misspelledWord) || [];
                 }
 
                 if (grammarCheck === true) {
@@ -81,7 +80,7 @@ const ResumeTemplate = ({ grammarCheck, spellCheck }: PropType) => {
                         { text: fullText },
                         { headers: { "Content-Type": "application/json" } }
                     );
-                    grammarMistakes = grammarResponse.data.mistakes || [];
+                    grammarMistakes = grammarResponse.data?.data?.map((item: any) => item?.wrongWords) || [];
                 }
 
                 setIncorrectWords(spellingMistakes);
@@ -96,16 +95,23 @@ const ResumeTemplate = ({ grammarCheck, spellCheck }: PropType) => {
         fetchCorrections();
     }, [spellCheck, grammarCheck]);
 
+
     const highlightWords = (text: string) => {
-        return text.split(" ").map((word, index) => {
-            const isSpellingMistake = spellCheck && incorrectWords.includes(word);
-            const isGrammarMistake = grammarCheck && grammarErrors.includes(word);
+        return text.split(/\s+/).map((word, index) => {
+            // Normalize word by removing punctuation and making it lowercase
+            const cleanedWord = word.replace(/[.,!?]/g, "").toLowerCase();
+
+            // Ensure incorrectWords and grammarErrors are always arrays before calling 'includes'
+            const isSpellingMistake = spellCheck && incorrectWords.includes(cleanedWord);
+            const isGrammarMistake = grammarCheck && grammarErrors.includes(cleanedWord);
 
             return (
                 <span
                     key={index}
-                    className={`${isSpellingMistake ? "text-red-500" : ""
-                        } ${isGrammarMistake ? "text-primaryBlue" : ""}`}
+                    className={`
+                        ${isSpellingMistake ? "text-red-500" : ""}
+                        ${isGrammarMistake ? "bg-blue-200 underline" : ""}
+                    `}
                 >
                     {word}{" "}
                 </span>
