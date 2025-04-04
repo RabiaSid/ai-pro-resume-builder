@@ -27,7 +27,7 @@ export default function ImproveText() {
     }, [grammarCheck, spellCheck]);
 
     return (
-        <div className='px-4 py-4 border-2 rounded-lg bg-white'>
+        <div className='px-4 py-4 border-2 rounded-lg bg-white mt-4'>
             <div className='border-b flex py-2 items-center justify-between px-2'>
                 <p>Improve Text</p>
                 <CgClose />

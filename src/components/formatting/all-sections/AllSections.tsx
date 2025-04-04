@@ -7,7 +7,7 @@ import Projects from './sections/Projects'
 
 const AllSections = () => {
   return (
-    <div className='grid gap-4 h-[650px] overflow-auto p-2'>
+    <div className='grid gap-4 h-[650px] overflow-auto p-2 mt-4'>
       <Skills lock={false} />
       <Certificate lock={false} />
       <Experience lock={true} />

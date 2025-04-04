@@ -12,6 +12,7 @@ import improve from 'media/builderIcons/improve.svg';
 import ats from 'media/builderIcons/ats.svg';
 import robot from 'media/builderIcons/robot.svg';
 import rearrange from 'media/builderIcons/rearrange.svg';
+import { ImproveText, AllSections } from "@/components";
 
 type TextEditorProps = {
   currentState: {
@@ -115,11 +116,7 @@ const TextEditor = (props: TextEditorProps) => {
           </div>
           {/* ===== Add Sections ===== */}
           {activeTab === "Add Section" && (
-            <div className="mt-4">
-              <button onClick={() => dispatch(addSection())} className="mt-4 px-4 py-2 bg-blue-500 text-white">
-                Add Section
-              </button>
-            </div>
+            <AllSections />
           )}
           {/* ===== Add Sections ===== */}
           {activeTab === "Templates" && <div>Templates Content</div>}
@@ -132,7 +129,7 @@ const TextEditor = (props: TextEditorProps) => {
             />
           )}
           {/* ===== Add Sections ===== */}
-          {activeTab === "Improve Text" && <div>Improve Text Content</div>}
+          {activeTab === "Improve Text" && <ImproveText />}
           {/* ===== Add Sections ===== */}
           {activeTab === "ATS Check" && <div>ATS Check Content</div>}
           {/* ===== Add Sections ===== */}

@@ -42,23 +42,9 @@ const Services = dynamic(() => import("./services/Services"));
 const ServicesSection = dynamic(() => import("./services/ServicesSection"));
 const profileSection = dynamic(() => import("./profile/profileSection/profileSection"));
 const loadingSkeleton = dynamic(() => import("./loadingSkeleton/loadingSkeleton"));
+const AllSections = dynamic(() => import("./formatting/all-sections/AllSections"));
 
 export {
-  CustomAlert,
-  CustomSelect,
-  CustomPhoneNumber,
-  TextArea,
-  Switch,
-  Search,
-  MultiInputField,
-  CustomInputField,
-  CustomModal,
-  SpinnerLoader,
-  OnScrollAnimeCard,
-  Carousel,
-  ServiceCard,
-  PackageCard,
-  ReviewCard,
   CustomAlert,
   CustomSelect,
   CustomPhoneNumber,
@@ -90,7 +76,6 @@ export {
   ServiceContent,
   Services,
   FlipCard,
-  FlipCard,
   ServicesSection,
   facebookLogin,
   googleLogin,
@@ -102,4 +87,5 @@ export {
   DndContext,
   DndExample,
   ImproveText,
-};
+  AllSections,
+}
