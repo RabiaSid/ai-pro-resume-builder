@@ -52,7 +52,7 @@ const DesignFont = ({ currentState, updateState, isSubscribed = false, lockedCol
     "#C99980",
     "#B8B6A4",
     "#A5A48E",
-    "#F2F2F4",
+    "",
   ];
 
   // Determine if the last 3 colors should be locked based on subscription status
@@ -61,7 +61,7 @@ const DesignFont = ({ currentState, updateState, isSubscribed = false, lockedCol
 
     // If the user is not subscribed, lock the last 3 colors
     if (!isSubscribed) {
-      colors.push(colorPalette.length - 4, colorPalette.length - 3, colorPalette.length - 2); 
+      colors.push(colorPalette.length - 4, colorPalette.length - 3, colorPalette.length - 2);
     }
 
     return colors;
@@ -115,7 +115,9 @@ const DesignFont = ({ currentState, updateState, isSubscribed = false, lockedCol
               >
                 <div
                   className={`w-full h-full flex items-center justify-center rounded-full cursor-pointer ${lockedColors.includes(index) ? "opacity-50 cursor-not-allowed" : ""}`}
-                  style={{ backgroundColor: color }}
+                  style={{
+                    backgroundColor: index === colorPalette.length - 1 ? '#F2F2F4' : color
+                  }}
                   onClick={() => !lockedColors.includes(index) && updateState({ ...currentState, color, selectedIndex: index })}
                 >
                   {lockedColors.includes(index) && <HiOutlineLockClosed className="text-[14px] text-[#000000]" />}
