@@ -5,7 +5,7 @@ const Template = dynamic(() => import("./formatting/Template/template"));
 const Rearrange = dynamic(() => import("./formatting/rearrange/rearrange"));
 const DndContext = dynamic(() => import("./formatting/drag-and-drop/DndContext"));
 const DndExample = dynamic(() => import("./formatting/drag-and-drop/DndExample"));
-const ImproveText = dynamic(() => import("./formatting/improve-text/improveText"));
+const ImproveText = dynamic(() => import("./formatting/improveText/improveText"));
 const NewSection = dynamic(() => import("./formatting/NewSection/NewSection"));
 const ResumePreview = dynamic(() => import("./formatting/ResumePreview/ResumePreview"));
 const AutoPlaySlider = dynamic(() => import("./slider/AutoPlaySlider"));
