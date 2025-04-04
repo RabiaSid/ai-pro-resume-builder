@@ -358,11 +358,10 @@ export default function page() {
                     </svg>
                   )
                 }
-                className={`${
-                  loading
+                className={`${loading
                     ? "bg-blue-300 cursor-not-allowed"
                     : "bg-primaryBlue hover:bg-slate-800 cursor-pointer "
-                } uppercase w-full mt-4 px-8 py-2 rounded-md
+                  } uppercase w-full mt-4 px-8 py-2 rounded-md
                                  text-white text-xl flex items-center justify-center font-bold ease-in transition-all mb-4 sm:mb-0`}
               />
               <div className="w-[60%] text-center mt-4 text-slate-500 inline-block mb-5">

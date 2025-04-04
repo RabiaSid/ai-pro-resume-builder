@@ -31,7 +31,7 @@ const ApplyNow = () => {
     { id: "4", name: "Master's Degree" },
     { id: "5", name: "Ph.D." },
   ]);
-  console.log(verified,);
+  console.log(verified);
 
   const {
     control,
@@ -159,7 +159,7 @@ const ApplyNow = () => {
                   validate: (fileList) =>
                     fileList && fileList.length > 0
                       ? fileList[0].size <= 5 * 1024 * 1024 ||
-                      "File size should be 5MB or less"
+                        "File size should be 5MB or less"
                       : "Resume file is required",
                 }}
                 render={({ field: { onChange, value } }) => (

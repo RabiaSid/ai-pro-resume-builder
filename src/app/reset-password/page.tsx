@@ -198,11 +198,10 @@ export default function page() {
                   </svg>
                 )
               }
-              className={`${
-                loading
+              className={`${loading
                   ? "bg-primaryGreen/40 cursor-not-allowed"
                   : "bg-primaryCran hover:bg-slate-800  cursor-pointer "
-              } uppercase w-full mt-4 px-8 py-2 rounded-md text-white text-xl flex items-center 
+                } uppercase w-full mt-4 px-8 py-2 rounded-md text-white text-xl flex items-center 
                              justify-center font-bold ease-in transition-all mb-4 sm:mb-0`}
             />
 
