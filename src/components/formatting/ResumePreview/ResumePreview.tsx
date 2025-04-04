@@ -3,17 +3,43 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NewSection } from "@/components";
 
-const ResumePreview = ({ currentState, updateState }) => {
-  const { sections } = useSelector((state) => state.resume);
+// Define the shape of the `currentState` object
+type CurrentState = {
+  fontSize: string;
+  fontFamily: string;
+  fontWeight: string;
+  color: string;
+  margin: number;
+  padding: number;
+  text: string;
+}
 
+// Define the shape of a section object
+type Section = {
+  id: string;
+  component: string;
+}
+
+// Define the props for the ResumePreview component
+type ResumePreviewProps = {
+  currentState: CurrentState;
+  updateState: (newState: CurrentState) => void;
+}
+
+const ResumePreview = (props: ResumePreviewProps) => {
+  const { currentState, updateState } = props
+  // Typing the Redux state with the sections array
+  const { sections } = useSelector((state: { resume: { sections: Section[] } }) => state.resume);
+
+  // Check if currentState is undefined
   if (!currentState) {
     return <div>Error: currentState is undefined</div>;
   }
 
-  const renderSection = (section) => {
+  // Function to dynamically render the section components
+  const renderSection = (section: Section) => {
     if (section.component === 'NewSection') {
       return <NewSection key={section.id} currentState={currentState} updateState={updateState} />;
-      // Dynamically render NewSection component
     }
     return null;
   };

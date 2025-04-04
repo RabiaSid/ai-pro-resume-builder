@@ -16,7 +16,7 @@ import user from 'media/builderIcons/user.svg';
 // Define types for props
 type HeaderProps = {
   currentState: {
-    fontSize: number | string;
+    fontSize: string;
     fontFamily: string;
     color: string;
     text: string;
@@ -29,12 +29,14 @@ type HeaderProps = {
 
 const UserHeader = (props: HeaderProps) => {
   const { currentState, handleUndo, handleRedo, history, future } = props
-  // Function to generate and download PDF
   const downloadPDF = () => {
     const doc = new jsPDF();
-    doc.setFontSize(Number(currentState.fontSize));
-    doc.setFont(currentState.fontFamily);
-    doc.setTextColor(currentState.color);
+    const fontSize = parseInt(currentState.fontSize, 10);
+    doc.setFontSize(fontSize);
+    const fontFamily = currentState.fontFamily || 'Arial';
+    doc.setFont(fontFamily);
+    const color = currentState.color || '#000000';
+    doc.setTextColor(color);
     doc.text(currentState.text, 10, 20);
     doc.save('resume.pdf');
   };

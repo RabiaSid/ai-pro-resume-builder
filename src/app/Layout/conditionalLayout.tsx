@@ -39,7 +39,7 @@ const ConditionalLayout = ({ children }: any) => {
     if (JSON.stringify(currentState) !== JSON.stringify(newState)) {
       setHistory([...history, currentState]);
       setCurrentState(newState);
-      setFuture([]);
+      setFuture([]); // clear future after new change
     }
   };
 
@@ -67,14 +67,14 @@ const ConditionalLayout = ({ children }: any) => {
         className={`${pathname === "/create-resume/formatting" ? "bg-[#f3f4f6]" : null
           }`}
       >
-        {pathname === "/create-resume/formatting" || pathname === "/formatting-new" ? <UserHeader
+        {pathname === "/create-resume/formatting" ? <UserHeader
           currentState={currentState}
           handleUndo={handleUndo}
           handleRedo={handleRedo}
           history={history}
           future={future}
         /> : <Header />}
-        
+
         <div
           className={`${pathname === "/create-resume/formatting" ? "flex" : null
             }`}

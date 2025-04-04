@@ -25,6 +25,6 @@
       ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/formatting-new/page.js", "src/app/formatting-new/page.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/formatting-new/page.tsx", "src/app/formatting-new/page.tsx"],
   "exclude": ["node_modules"]
 }
