@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import AppButton from "../common/button/pages";
+import AppButton from "../common/button/CustomButton";
 import ServiceCard from "../common/card/ServiceCard";
 import serviceimg from "media/assets/about_img_2.webp";
 

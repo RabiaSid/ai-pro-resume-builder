@@ -6,7 +6,7 @@ import { Controller, useForm } from "react-hook-form";
 import { BiLoaderAlt } from "react-icons/bi";
 import { MdOutlineSimCardDownload } from "react-icons/md";
 import CustomPhoneNumber from "@/components/common/customSelect/CustomPhoneNumber";
-import AppInputField from "@/components/common/inpufield/page";
+import AppInputField from "@/components/common/inpufield/CustomInputField";
 import CustomSelect from "@/components/common/customSelect/CustomSelect";
 import MainBanner from "@/components/Banner/mainBanner";
 import { ApplyNowBannerData } from "./data";

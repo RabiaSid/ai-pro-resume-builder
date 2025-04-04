@@ -1,6 +1,6 @@
 import FacebookLogin from "@greatsumini/react-facebook-login";
 import axios from "axios";
-import AppButton from "../common/button/pages";
+import AppButton from "../common/button/CustomButton";
 import Image from "next/image";
 import FacebookLogo from "media/assets/fb_logo.webp";
 import { useDispatch } from "react-redux";

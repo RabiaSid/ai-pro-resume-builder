@@ -10,7 +10,7 @@ import UserReferral from '@/components/userReferral/UserReferral';
 import { FiPhone } from 'react-icons/fi';
 import { CgClose } from 'react-icons/cg';
 import SunEditor from 'suneditor-react';
-import AppButton from '@/components/common/button/pages';
+import AppButton from '@/components/common/button/CustomButton';
 import { userAwards, userCertificates, userEducation, userExperiences, userLanguages, userProfile, userReferences, userSoftSkills, userTechnicalSkills } from '@/redux/slices/profileSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store'

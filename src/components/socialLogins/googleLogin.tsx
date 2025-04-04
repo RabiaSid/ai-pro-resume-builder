@@ -4,7 +4,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
-import AppButton from "../common/button/pages";
+import AppButton from "../common/button/CustomButton";
 import GoogleLogo from "media/assets/google_logo.webp";
 import { useRouter } from "next/navigation";
 

@@ -1,8 +1,8 @@
 "use client";
-
+import React from 'react'
 import { DragDropContext, DropResult } from "@hello-pangea/dnd";
 
-export const DndContext = ({
+const DndContext = ({
     children,
     onDragEnd,
 }: {
@@ -10,4 +10,6 @@ export const DndContext = ({
     onDragEnd: (result: DropResult) => void;
 }) => {
     return <DragDropContext onDragEnd={onDragEnd}>{children}</DragDropContext>;
-};
+}
+
+export default DndContext

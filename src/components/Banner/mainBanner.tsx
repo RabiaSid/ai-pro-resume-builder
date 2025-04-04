@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { useTypedText } from "../useTypedText";
-import AppButton from "../common/button/pages";
+import AppButton from "../common/button/CustomButton";
 import BannerZoomSlider from "./bannerZoomSlider";
 import { H1, Lead } from "@/components/typography";
 import styles from "./mainBanner.module.css"

@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import Image from 'next/image';
 import LinkedInLogo from 'media/assets/link.webp';
-import AppButton from '../common/button/pages';
+import AppButton from '../common/button/CustomButton';
 import { clearSessionAndStorages, handleSetToken, handleSetUser } from '@/redux/slices/authSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/redux/store';
