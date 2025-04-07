@@ -4,6 +4,7 @@ import profileReducer from "@/redux/slices/profileSlice";
 import reuseableReducer from "@/redux/slices/reuseableSlice";
 import resumeReducer from "@/redux/slices/resumeSlice";
 import ImproveTextReducer from "@/redux/slices/improveTextSlice";
+import addSectionReducer from "@/redux/slices/addSectionSlice";
 
 export const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
         reuseable: reuseableReducer,
         resume: resumeReducer,
         ImproveText: ImproveTextReducer,
+        addSection: addSectionReducer,
     },
 });
 

@@ -1,15 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ResumePreview, TextEditor } from "@/components";
 import UserHeader from "../Layout/user-header/userHeader";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 export default function Page() {
+  const { addedSections, availableSections } = useSelector((state: RootState) => state.addSection);
+
+  // const { addedSections, availableSections } = useSelector(
+  //   (state: RootState) => state.resumeSection
+  // );
   const [currentState, setCurrentState] = useState<any>({
     fontSize: "20px",
     fontWeight: "normal",
     color: "#294452",
     selectedIndex: 0,
-    text: "Hello, world!",
+    text: [],
     fontFamily: "Arial",
     margin: 0,
     padding: "8px",
@@ -43,7 +50,12 @@ export default function Page() {
       setFuture(future.slice(1));
     }
   };
-
+  useEffect(() => {
+    setCurrentState((prevState: any) => ({
+      ...prevState,
+      text: availableSections, // populate text with availableSections
+    }));
+  }, [availableSections]);
   return (
     <>
       <div className="text-center">

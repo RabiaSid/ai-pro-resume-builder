@@ -1,7 +1,16 @@
 import React from 'react'
 import { FaCalendar, FaLock } from 'react-icons/fa'
 
-const Education = ({ lock }: { lock: boolean }) => {
+const Education = ({ sectionData, handleAddSec }: { sectionData: any, handleAddSec: any }) => {
+
+  const handleAddSection = () => {
+    handleAddSec({
+      id: 4,
+      name: "Education",
+      description: "",
+      visible: false,
+    })
+  };
 
   const educationList = [
     {
@@ -38,9 +47,20 @@ const Education = ({ lock }: { lock: boolean }) => {
         </div>
       </div>
 
-      {lock && <div className="absolute right-3 bottom-3 w-8 h-8 bg-black rounded-full flex items-center justify-center shadow-md">
+      {sectionData?.locked && <div className="absolute right-3 bottom-3 w-8 h-8 bg-black rounded-full flex items-center justify-center shadow-md">
         <FaLock className="text-sm text-white" />
       </div>}
+
+      <button
+        // className="absolute inset-12
+        //  bg-purple-700 cursor-pointer bg-opacity-80
+        //   text-white text-center py-2 rounded-xl opacity-0 
+        //   group-hover:opacity-100 transition-all"
+        onClick={handleAddSection}
+      >
+        Add to resume
+      </button>
+
     </div>
   )
 }
