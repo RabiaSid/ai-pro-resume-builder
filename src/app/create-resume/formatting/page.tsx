@@ -48,11 +48,14 @@ export default function Page() {
         }
     };
     useEffect(() => {
+        // Ensure text is an array of strings
+        const newText = availableSections.map((section: any) => section.text || ''); // Adjust field name if necessary
         setCurrentState((prevState: any) => ({
             ...prevState,
-            text: availableSections, // populate text with availableSections
+            text: newText, // populate text with an array of strings
         }));
     }, [availableSections]);
+
     return (
         <>
             <div className="text-center">

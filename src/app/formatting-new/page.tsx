@@ -7,13 +7,12 @@ import { RootState } from "@/redux/store";
 export default function Page() {
   const { availableSections } = useSelector((state: RootState) => state.addSection);
 
-
   const [currentState, setCurrentState] = useState<any>({
     fontSize: "20px",
     fontWeight: "normal",
     color: "#294452",
     selectedIndex: 0,
-    text: [],
+    text: [], // Text will be populated here
     fontFamily: "Arial",
     margin: 0,
     padding: "8px",
@@ -47,12 +46,16 @@ export default function Page() {
       setFuture(future.slice(1));
     }
   };
+
   useEffect(() => {
+    // Ensure text is an array of strings
+    const newText = availableSections.map((section: any) => section.text || ''); // Adjust field name if necessary
     setCurrentState((prevState: any) => ({
       ...prevState,
-      text: availableSections, // populate text with availableSections
+      text: newText, // populate text with an array of strings
     }));
   }, [availableSections]);
+
   return (
     <>
       <div className="text-center">

@@ -1,6 +1,8 @@
 import dynamic from "next/dynamic";
 
-const UserHeader = dynamic(() => import("../app/Layout/user-header/userHeader"));
+const UserHeader = dynamic(() => import("./Layout/user-header/userHeader"));
+const Header = dynamic(() => import("./Layout/header/Header"));
+const Footer = dynamic(() => import("./Layout/footer/Footer"));
 const TextEditor = dynamic(() => import("./formatting/TextEditor/TextEditor"));
 const Template = dynamic(() => import("./formatting/Template/template"));
 const Rearrange = dynamic(() => import("./formatting/rearrange/rearrange"));
@@ -90,4 +92,6 @@ export {
   ImproveText,
   AllSections,
   UserHeader,
+  Header,
+  Footer
 }
