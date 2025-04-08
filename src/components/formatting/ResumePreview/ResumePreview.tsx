@@ -29,7 +29,7 @@ type ResumePreviewProps = {
 const ResumePreview = (props: ResumePreviewProps) => {
   const { currentState, updateState } = props
   // Typing the Redux state with the sections array
-  const { sections } = useSelector((state: { resume: { sections: Section[] } }) => state.resume);
+  const { sections } = useSelector((state: { font: { sections: Section[] } }) => state.font);
 
   // Check if currentState is undefined
   if (!currentState) {

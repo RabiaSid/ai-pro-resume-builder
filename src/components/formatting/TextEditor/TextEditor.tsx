@@ -1,8 +1,9 @@
+"use client"
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import Image from 'next/image';
 // ===============
-import { addSection } from '../../../redux/slices/resumeSlice';
+// import { addSection } from '../../../redux/slices/fontSlice';
 // ===============
 import DesignFont from "../DesignFont/DesignFont";
 import sections from 'media/builderIcons/sections.svg';
