@@ -120,7 +120,7 @@ const ResumeTemplate = () => {
     };
 
     return (
-        <div className="p-6 max-w-3xl mx-auto border border-gray-300 shadow-lg bg-white">
+        <div className="p-6 max-w-3xl mx-auto border border-gray-300 shadow-lg bg-white text-left">
             <h1 className="text-2xl font-bold">{highlightWords(personalInfo.name)}</h1>
             <p>{highlightWords(personalInfo.email)}</p>
             <p>{highlightWords(personalInfo.phone)}</p>
