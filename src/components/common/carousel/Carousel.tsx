@@ -1,8 +1,5 @@
 "use client";
 import React, { ReactNode } from 'react'
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 type PropsType = {
     nextArrow?: React.ReactNode | any;
@@ -70,9 +67,9 @@ export default function Carousel(props: PropsType) {
         <section className="relative container mx-auto py-4 md:8">
             <div className="w-full bg-white">
                 <div className="relative px-8">
-                    <Slider {...settings}>
+                    {/* <Slider {...settings}>
                         {children}
-                    </Slider>
+                    </Slider> */}
                 </div>
             </div>
             <style jsx>{`

@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 
+const UserHeader = dynamic(() => import("../app/Layout/user-header/userHeader"));
 const TextEditor = dynamic(() => import("./formatting/TextEditor/TextEditor"));
 const Template = dynamic(() => import("./formatting/Template/template"));
 const Rearrange = dynamic(() => import("./formatting/rearrange/rearrange"));
@@ -88,4 +89,5 @@ export {
   DndExample,
   ImproveText,
   AllSections,
+  UserHeader,
 }

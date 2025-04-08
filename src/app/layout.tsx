@@ -4,8 +4,6 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import "./globals.css";
 import ConditionalLayout from "./Layout/conditionalLayout";
 import ReduxProvider from "@/redux/Provider";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import "suneditor/dist/css/suneditor.min.css";
 import { Suspense } from "react";
 

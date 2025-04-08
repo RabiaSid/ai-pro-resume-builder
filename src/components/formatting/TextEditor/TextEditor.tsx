@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import Image from 'next/image';
 // ===============
-import { addSection } from '../../../redux/slices/resumeSlice';
+import { ImproveText, AllSections } from "@/components";
 // ===============
 import DesignFont from "../DesignFont/DesignFont";
 import sections from 'media/builderIcons/sections.svg';
@@ -12,7 +12,6 @@ import improve from 'media/builderIcons/improve.svg';
 import ats from 'media/builderIcons/ats.svg';
 import robot from 'media/builderIcons/robot.svg';
 import rearrange from 'media/builderIcons/rearrange.svg';
-import { ImproveText, AllSections } from "@/components";
 
 type TextEditorProps = {
   currentState: {

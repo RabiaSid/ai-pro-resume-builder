@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { HiOutlineLockClosed, HiPlus } from "react-icons/hi";
+import { Lock } from 'lucide-react';
 // Importing fonts
 import {
   Rubik,
@@ -22,6 +22,21 @@ const chivo = Chivo({ subsets: ["latin"], weight: ["400", "700"] });
 const oswald = Oswald({ subsets: ["latin"], weight: ["400", "700"] });
 const volkhov = Volkhov({ subsets: ["latin"], weight: ["400", "700"] });
 
+const colors = [
+  { hex: '#294452', locked: false },
+  { hex: '#369A8C', locked: false },
+  { hex: '#E6C374', locked: false },
+  { hex: '#F1A163', locked: false },
+  { hex: '#E27055', locked: false },
+  { hex: '#E05757', locked: false },
+  { hex: '#FBE7D5', locked: false },
+  { hex: '#DDBDAD', locked: false },
+  { hex: '#00b6cb', locked: false },
+  { hex: '#C99980', locked: true },
+  { hex: '#B8B6A4', locked: true },
+  { hex: '#3c6df0', locked: true },
+];
+
 // Define types for the props and state
 type DesignFontProps = {
   currentState: {
@@ -38,56 +53,12 @@ type DesignFontProps = {
   lockedColors: number[];
 };
 
-const DesignFont = ({ currentState, updateState, isSubscribed = false, lockedColors: initialLockedColors }: DesignFontProps) => {
-  // Define a color palette
-  const colorPalette: string[] = [
-    "#294452",
-    "#369A8C",
-    "#E6C374",
-    "#F1A163",
-    "#E27055",
-    "#E05757",
-    "#FBE7D5",
-    "#DDBDAD",
-    "#C99980",
-    "#B8B6A4",
-    "#A5A48E",
-    "",
-  ];
-
-  // Determine if the last 3 colors should be locked based on subscription status
-  const [lockedColors, setLockedColors] = useState<number[]>(() => {
-    const colors = [...initialLockedColors];
-
-    // If the user is not subscribed, lock the last 3 colors
-    if (!isSubscribed) {
-      colors.push(colorPalette.length - 4, colorPalette.length - 3, colorPalette.length - 2);
-    }
-
-    return colors;
-  });
-
+const DesignFont = ({ currentState, updateState, }: DesignFontProps) => {
+  const [selectedColor, setSelectedColor] = useState('#294452');
   useEffect(() => {
-    // When the subscription status or lockedColors changes, update the locked colors
-    setLockedColors(prev => {
-      const colors = [...prev];
+    setSelectedColor(currentState.color);
+  }, [currentState.color]);
 
-      // Lock the last 3 colors if the user is not subscribed
-      if (!isSubscribed) {
-        const lastThreeColors = [colorPalette.length - 4, colorPalette.length - 3, colorPalette.length - 2];
-        lastThreeColors.forEach(colorIndex => {
-          if (!colors.includes(colorIndex)) {
-            colors.push(colorIndex);
-          }
-        });
-      } else {
-        // If subscribed, unlock the last 3 colors
-        return colors.filter(color => ![colorPalette.length - 4, colorPalette.length - 3, colorPalette.length - 2].includes(color));
-      }
-
-      return colors;
-    });
-  }, [isSubscribed, initialLockedColors]);
 
   // Define font family
   const fontStyles: { [key: string]: string } = {
@@ -107,36 +78,46 @@ const DesignFont = ({ currentState, updateState, isSubscribed = false, lockedCol
       <div className="flex flex-col items-start justify-start gap-4 py-4 border-y border-gray-300">
         <div className="flex flex-col items-start justify-start gap-2 w-full">
           <label className="text-[14px] text-[#707275] font-bold">Color</label>
-          <div className="grid grid-cols-6 gap-2 w-full">
-            {colorPalette.map((color, index) => (
-              <div
+          <div className="grid grid-cols-6 gap-4 mb-4">
+            {colors.map((color, index) => (
+              <button
                 key={index}
-                className={`relative w-8 h-8 p-[2px] rounded-full ${lockedColors.includes(index) ? "opacity-50 cursor-not-allowed" : ""} ${currentState.selectedIndex === index ? "border border-[#7B40EA]" : "border-0"}`}
+                className={`w-10 h-10 rounded-full flex items-center justify-center relative ${selectedColor === color.hex ? 'ring-2 ring-purple-500 ring-offset-2' : ''
+                  }`}
+                style={{ backgroundColor: color.hex }}
+                onClick={() => {
+                  if (!color.locked) {
+                    setSelectedColor(color.hex);
+                    updateState({ ...currentState, color: color.hex });
+                  }
+                }}
+
+                disabled={color.locked}
               >
-                <div
-                  className={`w-full h-full flex items-center justify-center rounded-full cursor-pointer ${lockedColors.includes(index) ? "opacity-50 cursor-not-allowed" : ""}`}
-                  style={{
-                    backgroundColor: index === colorPalette.length - 1 ? '#F2F2F4' : color
-                  }}
-                  onClick={() => !lockedColors.includes(index) && updateState({ ...currentState, color, selectedIndex: index })}
-                >
-                  {lockedColors.includes(index) && <HiOutlineLockClosed className="text-[14px] text-[#000000]" />}
-                  {index === colorPalette.length - 1 && <HiPlus className="text-[14px] text-[#000000]" />}
-                </div>
-              </div>
+                {color.locked && (
+                  <div className="absolute inset-0 bg-white/60 rounded-full flex items-center justify-center cursor-pointer">
+                    <Lock size={16} className="text-gray-600" />
+                  </div>
+                )}
+              </button>
             ))}
           </div>
-        </div>
-
-        {/* Custom Color */}
-        <div className="flex items-center gap-3 border border-gray-400 rounded-sm px-2 w-full">
-          <input
-            type="color"
-            className="w-[11%] h-[32px] border-transparent rounded-full"
-            value={currentState.color}
-            onChange={(e) => updateState({ ...currentState, color: e.target.value })}
-          />
-          <span className="text-[14px] font-normal">{currentState.color}</span>
+          <div className="flex items-center gap-4 border border-[#CECECE] rounded-md p-2 bg-white w-full">
+            {/* Custom color circle */}
+            <div className="text-center text-white cursor-pointer rounded-sm w-6 h-6" style={{ backgroundColor: selectedColor }}>
+              <input
+                type="color"
+                value={selectedColor}
+                onChange={(e) => {
+                  setSelectedColor(e.target.value);
+                  updateState({ ...currentState, color: e.target.value });
+                }}
+                className="w-6 h-6 p-0 border-2 border-transparent cursor-pointer rounded opacity-0"
+              />
+            </div>
+            {/* Show selected color hex */}
+            <span className="text-sm font-mono">{selectedColor}</span>
+          </div>
         </div>
       </div>
 
@@ -147,7 +128,7 @@ const DesignFont = ({ currentState, updateState, isSubscribed = false, lockedCol
           <select
             value={currentState.fontFamily}
             onChange={(e) => updateState({ ...currentState, fontFamily: e.target.value })}
-            className="p-2 border border-gray-400 focus:outline-none w-full"
+            className="p-2 border border-[#CECECE] rounded-md focus:outline-none w-full"
           >
             <option value="Arial">Arial</option>
             <option value="Rubik">Rubik</option>

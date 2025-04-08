@@ -1,16 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { ResumePreview, TextEditor } from "@/components";
-import UserHeader from "../Layout/user-header/userHeader";
+import { ResumePreview, TextEditor, UserHeader } from "@/components";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 
 export default function Page() {
-  const { addedSections, availableSections } = useSelector((state: RootState) => state.addSection);
+  const { availableSections } = useSelector((state: RootState) => state.addSection);
 
-  // const { addedSections, availableSections } = useSelector(
-  //   (state: RootState) => state.resumeSection
-  // );
+
   const [currentState, setCurrentState] = useState<any>({
     fontSize: "20px",
     fontWeight: "normal",
