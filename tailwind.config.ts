@@ -48,7 +48,7 @@ export default {
       backgroundImage: {
         'primary': 'linear-gradient(to right, #F8F8F8, #E9E9E9)',
         'secondary': 'linear-gradient(to right, #9885FF, #79A9FF)',
-        'primary2': 'linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.9) 90%)',
+        'primary2': 'linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%)',
         'primary3': 'linear-gradient(to right, #9885FF,#79A9FF)',
 
       },

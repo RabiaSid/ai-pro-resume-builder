@@ -1,5 +1,3 @@
-// addSectionSlice.ts
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type SectionType = {
@@ -28,7 +26,6 @@ const initialState: AddSectionState = {
       id: 4,
       name: "Education",
       description: "",
-      locked: true,
     },
     {
       id: 5,
@@ -53,16 +50,13 @@ const initialState: AddSectionState = {
   ],
 };
 
-
 export const addSectionSlice = createSlice({
   name: "addSection",
   initialState,
   reducers: {
     addNewSection: (state, action: PayloadAction<SectionType>) => {
       const section = action.payload;
-    
-      // Prevent duplicates
-      if (!state.addedSections.find(s => s.id === section.id)) {
+          if (!state.addedSections.find(s => s.id === section.id)) {
         state.addedSections.push(section);
         state.availableSections = state.availableSections.filter(s => s.id !== section.id);
       }
@@ -70,14 +64,12 @@ export const addSectionSlice = createSlice({
     
     removeSection: (state, action: PayloadAction<SectionType>) => {
       const section = action.payload;
-    
       state.addedSections = state.addedSections.filter(s => s.id !== section.id);
-    
       if (!state.availableSections.find(s => s.id === section.id)) {
         state.availableSections.push(section);
       }
-    },
-    
+    }
+
   },
 });
 

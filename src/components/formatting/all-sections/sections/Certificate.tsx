@@ -1,20 +1,20 @@
-import React from 'react'
-import { FaLock } from 'react-icons/fa6'
+import { CustomButton } from '@/components';
+import AddSectionClipPath from '@/components/common/clipPath/addSectionClipPath';
 
 const Certificate = ({ sectionData, handleAddSec }: { sectionData: any, handleAddSec: any }) => {
 
   const handleAddSection = () => {
     handleAddSec({
-      id: 2, // ✅ New unique ID
+      id: 2,
       name: "Certificate",
       description: "",
-      height: "h-[80px]",
-      visible: true,
+      height: "h-[80px]"
     })
   };
 
   return (
-    <div className="p-4 shadow-xl bg-white relative cursor-pointer h-[200px] overflow-hidden rounded-lg border border-gray-200">
+    <div className="group rounded-[10px] p-5 shadow-md border border-[#CECECE] bg-white relative h-56 hover:bg-primary2 overflow-hidden">
+
       <div className="text-start space-y-1">
         <h1 className="border-black border-b-2 mb-2 text-lg font-semibold">Certification</h1>
         <p className="text-xs text-gray-700">Lorem ipsum dolor, sit amet cons</p>
@@ -25,19 +25,14 @@ const Certificate = ({ sectionData, handleAddSec }: { sectionData: any, handleAd
         <hr className="border-gray-300" />
       </div>
 
-      {sectionData?.locked && <div className="absolute right-3 bottom-3 w-8 h-8 bg-black rounded-full flex items-center justify-center shadow-md">
-        <FaLock className="text-sm text-white" />
-      </div>}
+      {sectionData?.locked && <AddSectionClipPath />}
 
-      <button
-        // className="absolute inset-12
-        //  bg-purple-700 cursor-pointer bg-opacity-80
-        //   text-white text-center py-2 rounded-xl opacity-0 
-        //   group-hover:opacity-100 transition-all"
+      <CustomButton className="absolute bottom-4 left-1/2 transform -translate-x-1/2  -translate-y-1/2 bg-primary3  px-4 py-2 rounded-[5px] opacity-0 group-hover:opacity-100 transition-all"
+        title='+ Add to Resume'
+        altColor='text-white'
         onClick={handleAddSection}
-      >
-        Add to resume
-      </button>
+      />
+
     </div>
 
   )
