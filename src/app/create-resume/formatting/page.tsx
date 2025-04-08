@@ -1,21 +1,83 @@
-import React from 'react'
-import ImproveText from '@/components/formatting/improveText/improveText'
-import Template from '@/components/formatting/Template/template'
-import ImportParser from '@/components/formatting/importParser/importParser'
+"use client";
+import React, { useEffect, useState } from "react";
+import { ResumePreview, TextEditor, UserHeader } from "@/components";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+
+export default function Page() {
+    const { availableSections } = useSelector((state: RootState) => state.addSection);
 
 
-export default function Formatting() {
+    const [currentState, setCurrentState] = useState<any>({
+        fontSize: "20px",
+        fontWeight: "normal",
+        color: "#294452",
+        selectedIndex: 0,
+        text: [],
+        fontFamily: "Arial",
+        margin: 0,
+        padding: "8px",
+    });
 
+    const [history, setHistory] = useState<any[]>([currentState]);
+    const [future, setFuture] = useState<any[]>([]);
 
+    const updateState = (newState: any) => {
+        if (JSON.stringify(currentState) !== JSON.stringify(newState)) {
+            setHistory([...history, currentState]);
+            setCurrentState(newState);
+            setFuture([]);
+        }
+    };
+
+    const handleUndo = () => {
+        if (history.length > 1) {
+            const lastState = history[history.length - 1];
+            setCurrentState(lastState);
+            setFuture([currentState, ...future]);
+            setHistory(history.slice(0, history.length - 1));
+        }
+    };
+
+    const handleRedo = () => {
+        if (future.length > 0) {
+            const nextState = future[0];
+            setCurrentState(nextState);
+            setHistory([...history, nextState]);
+            setFuture(future.slice(1));
+        }
+    };
+    useEffect(() => {
+        setCurrentState((prevState: any) => ({
+            ...prevState,
+            text: availableSections, // populate text with availableSections
+        }));
+    }, [availableSections]);
     return (
-        <div className='grid grid-cols-12 w-full gap-20 p-4'>
-            <div className='col-span-4'>
-                <ImportParser />
-                <ImproveText />
+        <>
+            <div className="text-center">
+                <UserHeader
+                    currentState={currentState}
+                    handleUndo={handleUndo}
+                    handleRedo={handleRedo}
+                    history={history}
+                    future={future}
+                />
+                <div className="grid grid-cols-12 px-5">
+                    <div className="col-span-4">
+                        <TextEditor
+                            currentState={currentState}
+                            updateState={updateState}
+                        />
+                    </div>
+                    <div className="col-span-8">
+                        <ResumePreview
+                            currentState={currentState}
+                            updateState={updateState}
+                        />
+                    </div>
+                </div>
             </div>
-            <div className='col-span-8'>
-                <Template />
-            </div>
-        </div>
-    )
+        </>
+    );
 }
