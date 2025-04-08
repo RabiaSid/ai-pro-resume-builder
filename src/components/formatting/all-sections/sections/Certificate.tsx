@@ -27,7 +27,7 @@ const Certificate = ({ sectionData, handleAddSec }: { sectionData: any, handleAd
 
       {sectionData?.locked && <AddSectionClipPath />}
 
-      <CustomButton className="absolute bottom-4 left-1/2 transform -translate-x-1/2  -translate-y-1/2 bg-primary3  px-4 py-2 rounded-[5px] opacity-0 group-hover:opacity-100 transition-all"
+      <CustomButton className="absolute bottom-4 left-1/2 transform -translate-x-1/2  -translate-y-1/2 bg-primary3 w-48 px-3 py-2 rounded-[5px] opacity-0 group-hover:opacity-100 transition-all"
         title='+ Add to Resume'
         altColor='text-white'
         onClick={handleAddSection}
