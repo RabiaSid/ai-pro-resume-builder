@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { ResumePreview, TextEditor } from "@/components";
-import UserHeader from "../Layout/user-header/userHeader";
+import { ResumePreview, TextEditor, UserHeader } from "@/components";
 
 export default function Page() {
   const [currentState, setCurrentState] = useState<any>({
