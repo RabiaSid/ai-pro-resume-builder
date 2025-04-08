@@ -11,6 +11,7 @@ export default function Formatting() {
         <div className='grid grid-cols-12 w-full gap-20 p-4'>
             <div className='col-span-4'>
                 <ImportParser />
+                <ImproveText />
             </div>
             <div className='col-span-8'>
                 <Template />

@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setGrammarCheck, setSpellCheck } from '@/redux/slices/improveTextSlice';
 import CustomSwitch from '@/components/common/switch/switch';
-import { CgClose } from 'react-icons/cg';
 
 export default function ImproveText() {
     const dispatch = useDispatch();
@@ -27,14 +26,10 @@ export default function ImproveText() {
     }, [grammarCheck, spellCheck]);
 
     return (
-        <div className='px-4 py-4 border-2 rounded-lg bg-white mt-4'>
-            <div className='border-b flex py-2 items-center justify-between px-2'>
-                <p>Improve Text</p>
-                <CgClose />
-            </div>
+        <div className=''>
 
             <div className='pt-8'>
-                <div className='flex pb-8 items-center justify-between px-2'>
+                <div className='flex pb-8 items-center justify-between '>
                     <p>Grammar Checker</p>
                     <CustomSwitch
                         checked={grammarCheck}
@@ -42,7 +37,7 @@ export default function ImproveText() {
 
                     />
                 </div>
-                <div className='flex pb-8 items-center justify-between px-2'>
+                <div className='flex pb-8 items-center justify-between '>
                     <p>Spelling Checker</p>
                     <CustomSwitch
                         checked={spellCheck}

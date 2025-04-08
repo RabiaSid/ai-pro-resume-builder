@@ -28,6 +28,8 @@ type ResumePreviewProps = {
 const ResumePreview = (props: ResumePreviewProps) => {
   const dispatch = useDispatch();
   const { currentState, updateState } = props
+  // Typing the Redux state with the sections array
+  const { sections } = useSelector((state: { font: { sections: Section[] } }) => state.font);
 
   const addedSections = useSelector((state: any) => state.addSection.addedSections)
 

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Define the type for the state
-type ResumeState = {
+type FontState = {
   fontFamily: string;
   fontSize: number;
   margin: number;
@@ -10,18 +10,18 @@ type ResumeState = {
   sections: Array<{ id: number; component: string }>; // Sections will contain objects with id and component
 }
 
-// Initial state of the resume with typed values
-const initialState: ResumeState = {
+// Initial state of the font with typed values
+const initialState: FontState = {
   fontFamily: 'Arial',
   fontSize: 16,
   margin: 10,
   padding: 10,
   color: '#000000',
-  sections: [], // This stores the sections of the resume
+  sections: [], // This stores the sections of the font
 };
 
-const resumeSlice = createSlice({
-  name: 'resume',
+const fontSlice = createSlice({
+  name: 'font',
   initialState,
   reducers: {
     setFontFamily: (state, action: PayloadAction<string>) => {
@@ -55,6 +55,6 @@ export const {
   setPadding,
   setColor,
   addSection,
-} = resumeSlice.actions;
+} = fontSlice.actions;
 
-export default resumeSlice.reducer;
+export default fontSlice.reducer;
